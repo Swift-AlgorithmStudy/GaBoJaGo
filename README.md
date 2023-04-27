@@ -1,4 +1,4 @@
-# 🍎 Swift Alforithm Study
+# 🍎 Swift Algorithm Study
 
 | 진행 기간 | 2023.04.27 ~ | 
 | :---: | :---: |

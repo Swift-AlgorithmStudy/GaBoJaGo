@@ -1,11 +1,11 @@
 ## 💡 Linked Lists
 > Linked Lists에 대해 알아보자 ! </br>
 
-* 특징
-> Linked Lists는 선형적이며 단방향적인 순서로 정렬된 값의 모음입니다. </br>
+* 특징 </br>
+` Linked Lists는 선형적이며 단방향적인 순서로 정렬된 값의 모음입니다.`
 
-* 장점 
-> 앞부분에 대한 삽입 및 삭제가 이루어질 경우 Array에 비해 빠른 시간 복잡도를 가진다는 장점이 있습니다. </br>
+* 장점 </br>
+` 앞부분에 대한 삽입 및 삭제가 이루어질 경우 Array에 비해 빠른 시간 복잡도를 가진다는 장점이 있습니다. `
 
 
 ![pic](./list1.png)
@@ -16,8 +16,8 @@
 
 </br>
 
-1. 모든 노드들의 **값(value)**을 가지고 있습니다.
-2. 다음 노드를 **참조(reference)**합니다. nil 값을 가질 경우, 즉 참조할 다음 노드가 없을 경우 List의 끝을 의미합니다.
+1. 모든 노드들의 `값(value)`을 가지고 있습니다.
+2. 다음 노드를 `참조(reference)`합니다. nil 값을 가질 경우, 즉 참조할 다음 노드가 없을 경우 List의 끝을 의미합니다.
 
 </br>
 </br>
@@ -32,7 +32,7 @@ list에 값을 추가하는 방법은 다음 3가지 입니다. </br>
 3. insert(after: ) : 특정 노드 뒤에 값을 추가
 
 ### Push
-> head-first 삽입 </br>
+` head-first 삽입 ` </br>
 
 ```swift
 var list = LinkedList<Int>()
@@ -45,8 +45,10 @@ print(list)
 > 1 2 3 </br>
 > head-first 삽입이므로 다음과 같은 결과가 나옵니다. </br>
 
+</br>
+
 ### Append
-> tail-end 삽입 </br>
+` tail-end 삽입 ` </br>
 
 ```swift
 var list = LinkedList<Int>()
@@ -60,7 +62,7 @@ print(list)
 > 입력 순서가 바뀌었음에도 불구하고, append의 경우 list의 끝부터 삽입이 이루어지므로 동일한 결과가 나옵니다. </br>
 
 ### Insert(after:)
-> 특정 위치에 값을 추가합니다. </br>
+` 특정 위치에 값을 추가합니다. ` </br>
 
 다음 두가지의 단계가 필요합니다. </br>
 
@@ -157,6 +159,6 @@ let removedValue = list.remove(after: node)
 
 </br>
 
-> 출처 : Data Structures & Algorithms in Swift By Matthijs Hollemans (https://itunes.apple.com/WebObjects/MZStore.woa/wa/viewBook?id=0)
+` 🩶 출처 : Data Structures & Algorithms in Swift By Matthijs Hollemans (https://itunes.apple.com/WebObjects/MZStore.woa/wa/viewBook?id=0) `
 
 </br>

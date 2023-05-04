@@ -180,3 +180,98 @@ mutating func pop() -> T? {
     // 특정 node의 다음값이 tail과 같다면 tail은 입력받은 node로 설정한다. 그렇지 않다면 입력받은 node의 다음의 다음값을 node의 다음값으로 설정한다.
     
 ```
+
+# 문제풀이
+
+## 1. Merge Two Sorted Lists 
+
+### 풀이.
+
+```swift
+
+```
+
+### 설명.
+
+
+
+### 주의할점.
+
+
+
+## 2. Remove Linked List Elements 
+
+### 풀이.
+
+```swift
+
+```
+
+### 설명.
+
+
+
+### 주의할점.
+
+
+
+## 3. Reverse Linked List 
+
+### 풀이.
+
+```swift
+
+```
+
+### 설명.
+
+
+
+### 주의할점.
+
+
+
+## 4. Middle of the Linked List
+
+### 풀이.
+
+```swift
+
+```
+
+### 설명.
+
+
+
+### 주의할점.
+
+
+
+## 5. Convert Binary Number in a Linked List to Integer
+
+### 풀이.
+
+```swift
+ func getDecimalValue(_ head: ListNode?) -> Int {
+    var node = head
+    var result = ""
+    
+    while node != nil {
+        result.append(String(node?.val ?? 0))
+        node = node?.next
+    }
+    
+    return Int(result, radix: 2)!
+}
+```
+
+### 설명.
+
+result를 빈 문자열로 선언해준다음 입력받은 리스트의 요소들을 String 값으로 더해주었다. 그런다음 radix를 사용하여 10진법으로 변환하였다.
+
+### 주의할점.
+
+시간복잡도 생각.
+너무어려움.
+
+

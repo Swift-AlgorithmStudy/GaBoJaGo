@@ -28,16 +28,26 @@
       <img src="https://avatars.githubusercontent.com/GYURI-PARK" alt="프로필 사진" style="width: 150px;">
     </td>
     <td>
+      <img src="https://avatars.githubusercontent.com/hunyongseong" alt="프로필 사진" style="width: 150px;">
+    </td>
+    <td>
       <img src="https://avatars.githubusercontent.com/kiwi1023" alt="프로필 사진" style="width: 150px;">
     </td>
     <td>
       <img src="https://avatars.githubusercontent.com/JINi0S" alt="프로필 사진" style="width: 150px;">
     </td>
+    <td>
+      <img src="https://avatars.githubusercontent.com/zhunhe" alt="프로필 사진" style="width: 150px;">
+    </td>
+    
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/GYURI-PARK"> 🧜‍♀️ Doris</a></td>
+    <td align="center"><a href="https://github.com/hunyongseong"> 🏃 Goggins</a></td>
     <td align="center"><a href="https://github.com/kiwi1023"> 🥝 Kiwi</a></td>
     <td align="center"><a href="https://github.com/JINi0S"> 🧞‍♂️ Radin</a></td>
+    <td align="center"><a href="https://github.com/zhunhe"> 🍣 Uni</a></td>
+
   </tr>
 </table>
 

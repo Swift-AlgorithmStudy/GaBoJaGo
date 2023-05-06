@@ -6,8 +6,7 @@ Linked Lists는 ` 각각의 노드가 데이터와 다음 노드에 대한 참�
 
 </br>
 
-* 장점 
-
+* 장점 </br>
 Linked Lists는 다음 노드의 위치를 가지고 있기 때문에 연속적으로 저장할 필요가 없습니다. </br>
 따라서 중간 삽입, 삭제를 해도 연산의 오버헤드가 발생하지 않아 O(1)의 `빠른 시간복잡도`를 가집니다. </br>
 
@@ -36,17 +35,18 @@ Linked Lists는 다음 노드의 위치를 가지고 있기 때문에 연속적�
 
 Array와 Linked Lists 모두 여러 개의 값을 list형태로 저장할 수 있는 데이터 구조입니다. </br>
 
-### Array
+### cf) Array
 
 * 인덱스를 기반으로 한 순차적 데이터 구조
 * 빠른 검색이 필요한 경우나 데이터를 빠르게 순회해야 할 때 유용
 * Array의 모든 요소는 메모리의 연속된 위치에 저장되므로 캐시 효율성이 높고 메모리에 대한 직접적인 액세스가 가능
 * 요소의 추가나 제거가 가능
 
-
-
 따라서 `데이터의 검색이 빈번하게 일어나는 경우`에는 Array가 더 적합하며, </br> 
 데이터의 `삽입이나 삭제가 빈번하게 일어나는 경우`에는 LinkedList가 더 적합합니다. </br>
+
+</br>
+</br>
 
 ## 💡 Swift에서의 구현 
 
@@ -81,6 +81,9 @@ public struct LinkedList<Value> {
 }
 ```
 
+</br>
+</br>
+
 ## 💡 Adding values to the list
 > list에 값을 추가해보자 ! </br>
 
@@ -90,7 +93,7 @@ list에 값을 추가하는 방법은 다음 3가지 입니다. </br>
 2. append : list의 맨 끝에 값을 추가
 3. insert(after: ) : 특정 노드 뒤에 값을 추가
 
-### Push
+### 1. Push
 ` head-first 삽입 ` </br>
 
 ```swift
@@ -106,7 +109,7 @@ print(list)
 
 </br>
 
-### Append
+### 2. Append
 ` tail-end 삽입 ` </br>
 
 ```swift
@@ -120,7 +123,7 @@ print(list)
 > 1 2 3 </br>
 > 입력 순서가 바뀌었음에도 불구하고, append의 경우 list의 끝부터 삽입이 이루어지므로 동일한 결과가 나옵니다. </br>
 
-### Insert(after:)
+### 3. Insert(after:)
 ` 특정 위치에 값을 추가합니다. ` </br>
 
 다음 두가지의 단계가 필요합니다. </br>
@@ -163,7 +166,7 @@ list에서 값을 삭제하는 방법은 다음 3가지 입니다. </br>
 2. removeLast : list의 맨 끝에서 값을 제거
 3. remove(at:) : list의 어디서든 값을 제거
 
-### Pop
+### 1. Pop
 
 * pop 연산은 반환값으로 list에서 제거된 값을 리턴
 * 따라서 list가 비어있을 수도 있으므로, 이 값은 **옵셔널** 타입을 가집니다.
@@ -183,13 +186,13 @@ print(String(describing: poppedValue))
 
 </br>
 
-### removeLast
+### 2. removeLast
 
 * head가 nil일 경우 제거할 것이 없으므로 nil을 반환
 * list에 노드가 하나만 있는 경우 removeLast는 pop과 기능적으로 동일
 * pop에서와 마찬가지로 리턴 값은 **옵셔널**타입을 가집니다.
 
-### remove(after: )
+### 3. remove(after: )
 > remove(after )을 사용하기위해선 삭제하려는 노드 바로 전의 노드를 찾은 후 다음 노드를 unlink 해야합니다. </br>
 
 ```swift
@@ -218,6 +221,7 @@ let removedValue = list.remove(after: node)
 
 </br>
 
-` 🩶 출처 : Data Structures & Algorithms in Swift By Matthijs Hollemans (https://itunes.apple.com/WebObjects/MZStore.woa/wa/viewBook?id=0) `
+` 🩶 출처 : Data Structures & Algorithms in Swift By Matthijs Hollemans` 
+(https://itunes.apple.com/WebObjects/MZStore.woa/wa/viewBook?id=0) 
 
 </br>

@@ -188,44 +188,97 @@ mutating func pop() -> T? {
 ### 풀이.
 
 ```swift
-
+func mergeTwoLists(_ list1: ListNode?, _ list2: ListNode?) -> ListNode? {
+    if list1 == nil {
+        return list2
+    } else if list2 == nil {
+        return list1
+    }
+    
+    var head: ListNode?
+    var tail: ListNode?
+    
+    if list1!.val < list2!.val {
+        head = list1
+        tail = mergeTwoLists(list1!.next, list2)
+    } else {
+        head = list2
+        tail = mergeTwoLists(list1, list2!.next)
+    }
+    head!.next = tail
+    
+    return head
+}
 ```
 
 ### 설명.
 
+list1또는 list2가 nil이 아닌지 확인 작업을 거친다. list1 또는 list2가 nil이라면 큰수는 당연히 다른 나머지가 된다. 둘 다 nil이 아닐 경우, list1,2의 value값을 비교한다. list1의 value 크다면 head는 list1이 된다. 그리고 tail은 재귀함수를 통해 list1.next value값과 list2의 value값을 다시한번 비교해서 설정한다. list2가 클 경우도 동일하다. 그리고 마지막으로 head의 next를 tail로 설정하고 head를 return 하면 된다.
 
+시간 복잡도 O(n) -> 재귀함수
 
 ### 주의할점.
 
-
+linked list의 요소(Nord)는 참조값을 가진 클래스 객체이다. 그렇기 때문에 문제를 풀때 하나의 객체로서 생각하는 마인드가 필요한거 같다. array처럼 생각하면 안될듯.
 
 ## 2. Remove Linked List Elements 
 
 ### 풀이.
 
 ```swift
-
+func removeElements(_ head: ListNode?, _ val: Int) -> ListNode? {
+    var previous: ListNode? = ListNode(0)
+    var result = previous
+    var current = head
+    previous?.next = current
+    
+    while current != nil {
+        if current?.val == val {
+            previous?.next = current?.next
+        } else {
+            previous = current
+        }
+        
+        current = current?.next
+    }
+    
+    return result?.next
+}
 ```
 
 ### 설명.
 
-
+node를 하나를 만들고 previous에 할당한다. previous는 head를 할당받은 current의 앞에 있는 node이다. 그 다음 current의 값이 nil이 될때까지 while 반복문을 돌린다. 이때 current의 value가 입력받은 value값과 같다면 previous의 next 값에 current의 next 값을 할당한다. 같지 않다면 previous 값에 current를 할당한다. 이후 current에 current의 next 값을 할당한다. 마지막으로 result의 next값을 리턴하면 끝난다.
 
 ### 주의할점.
 
-
+node를 만들고 previous에 할당하는것과 그냥 previous를 빈 node로 바로 만든는 것이 뭐가 다른지 모르겠다.
 
 ## 3. Reverse Linked List 
 
 ### 풀이.
 
 ```swift
+func reverseList(_ head: ListNode?) -> ListNode? {
+    guard let head = head else { return nil }
+    guard var current = head.next else { return head }
+    var previous = head
+    previous.next = nil
+    
+    while let next = head.next {
+        current.next = previous
+        previous = current
+        current = next
+    }
+    current.next = previous
 
+    return current
+}
 ```
 
 ### 설명.
 
-
+답을봐도 모르겠다 미치겠다 너무 어렵다. 머리가 안돌아간다. 나는 뭐하는 놈인가.
 
 ### 주의할점.
 
@@ -236,16 +289,26 @@ mutating func pop() -> T? {
 ### 풀이.
 
 ```swift
+func middleNode(_ head: ListNode?) -> ListNode? {
+    var slow = head
+    var fast = head
 
+    while fast?.next != nil {
+        fast = fast?.next?.next
+        slow = slow?.next
+    }
+
+    return slow
+}
 ```
 
 ### 설명.
 
-
+slow와 fast를 선언하고 fast가 두번이동 할 동안 slow가 한번이동하면 fast가 끝에 도달할때 slow는 중간부터 끝까지의 값이 되게 된다.
 
 ### 주의할점.
 
-
+어렵다. 
 
 ## 5. Convert Binary Number in a Linked List to Integer
 
@@ -273,5 +336,3 @@ result를 빈 문자열로 선언해준다음 입력받은 리스트의 요소�
 
 시간복잡도 생각.
 너무어려움.
-
-

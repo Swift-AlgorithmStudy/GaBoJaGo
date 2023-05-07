@@ -1,14 +1,17 @@
 // Iterative Approach
 class Solution {
     func reverseList(_ head: ListNode?) -> ListNode? {
+        
         var prev = head, node = head?.next
         prev?.next = nil
+
         while node != nil {
             let next = node!.next
             node!.next = prev
             prev = node
             node = next
         }
+        
         return prev
     }
 }

@@ -9,34 +9,28 @@ class ListNode {
 }
 
 class Solution1 {
-    func getDecimalValue(_ head: ListNode?) -> Int {
+     func middleNode(_ head: ListNode?) -> ListNode? {
+        var headList = head
+        
         var currentNode = head
-        
-        var maxIndex: Float = 0.0
-        var result: Int = 0
-        
-        while currentNode!.next != nil {
-            maxIndex += 1
-            currentNode = currentNode!.next
+        var currentIndex = 0
+      
+        guard let head = headList else {
+            return headList
         }
         
-        currentNode = head
-        
-        for i in 0...Int(maxIndex) {
-            if currentNode!.val == 1 {
-                result += Int(pow(2.0, maxIndex - Float(i)))
-            }
+        while currentNode != nil {
             currentNode = currentNode!.next
+            currentIndex += 1
         }
-        return result
+        if currentIndex % 2 == 0{
+            currentIndex += 1
+        }
+        
+        for i in 0..<(currentIndex/2){
+            headList = headList!.next
+        }
+        
+        return headList
     }
 }
-
-var n1 = ListNode(1)
-var n2 = ListNode(0)
-var n3 = ListNode(1)
-n1.next = n2
-n2.next = n3
-n3.next = nil
-var sol = Solution1().getDecimalValue(n1)
-print(sol)

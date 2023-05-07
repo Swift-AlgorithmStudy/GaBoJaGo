@@ -12,7 +12,7 @@ Linked Lists는 다음 노드의 위치를 가지고 있기 때문에 연속적�
 
 </br>
 
-![pic](./list1.png)
+<img src="./list1.png" alt="pic" width="50%" height="50%">
 
 </br>
 
@@ -152,7 +152,7 @@ public func node(at index: Int) -> Node<Value>? {
 
 * 각 operation들의 시간 복잡도는 다음과 같습니다. 
 
-![pic](./list2.png)
+<img src="./list2.png" alt="pic" width="50%" height="50%">
 
 </br>
 </br>

@@ -53,7 +53,7 @@
     <tr>
     <td align="center"><a href="https://github.com/JINi0S"> 🧞‍♂️ Radin</a></td>
     <td align="center"><a href="https://github.com/zhunhe"> 🍣 Uni</a></td>
-    <td align="center"><a href="https://github.com/zhunhe"> 🔥 Ted</a></td>
+    <td align="center"><a href="https://github.com/Taerogrammer"> 🔥 Ted</a></td>
     </tr>
   
 </table>

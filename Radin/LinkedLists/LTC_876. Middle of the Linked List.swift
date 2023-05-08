@@ -8,18 +8,14 @@ class ListNode {
     public init(_ val: Int, _ next: ListNode?) { self.val = val; self.next = next; }
 }
 
-class Solution1 {
+class Solution {
      func middleNode(_ head: ListNode?) -> ListNode? {
-        var headList = head
-        
         var currentNode = head
         var currentIndex = 0
       
-        guard let head = headList else {
-            return headList
-        }
+        if head == nil { return head }
         
-        while currentNode != nil {
+        while  currentNode != nil {
             currentNode = currentNode!.next
             currentIndex += 1
         }
@@ -27,10 +23,12 @@ class Solution1 {
             currentIndex += 1
         }
         
+        currentNode = head
+        
         for i in 0..<(currentIndex/2){
-            headList = headList!.next
+            currentNode = currentNode!.next
         }
         
-        return headList
+        return currentNode
     }
 }

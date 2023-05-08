@@ -5,6 +5,7 @@
 - 리스트 앞에서 삽입 및 제거 시간 일정
 - 신뢰할 수 있는 성능 특성
 
+<br></br>
 
 ## 1. 연결리스트란?
 
@@ -56,6 +57,7 @@ public struct LinkedList<Value> {
 }
 ```
 
+<br></br>
 
 ## 2. 연결리스트에 값 추가하기
 
@@ -164,6 +166,7 @@ public mutating func insert(_ value: Value,
 | Behaviour | insert at head | insert at tail | insert after a node | returns a node at given index |
 | Time complexity | O(1) | O(1) | O(1) | O(i), where i is the given index |
 
+<br></br>
 
 ## 3. 리스트에서 값 제거하기
 
@@ -267,6 +270,7 @@ public mutating func remove(after node: Node<Value>) -> Value? {
 | Behaviour | remove at head | remove at tail | remove the immediate next node |
 | Time complexity | O(1) | O(1) | O(1) |
 
+<br></br>
 
 ## 4. Swift collection
 
@@ -321,6 +325,7 @@ public subscript(position: Index) -> Value {
 3. index(after:)는 인덱스를 증가시키는 방법을 지시합니다. 다음 노드의 인덱스를 간단히 전달하여 인덱스를 증가시킬 수 있습니다.
 4. 첨자(subscript)는 인덱스를 컬렉션 내의 값에 매핑하는 데 사용됩니다. 사용자 정의 인덱스를 만들었기 때문에 노드의 값에 상수 시간에 접근할 수 있습니다. 이를 통해 인덱스를 값을 참조하는 데 사용할 수 있습니다.
 
+<br></br>
 
 ## 5. Value semantics and copy-on-write
 
@@ -406,6 +411,7 @@ private mutating func copyNodes() {
 이 메서드는 연결 리스트의 기존 노드를 동일한 값을 가진 새로 할당된 노드로 교체합니다. 이제 LinkedList에서 mutating 키워드로 표시된 다른 모든 6가지 삽입 삭제 메서드의 맨 위에서 copyNodes를 호출하세요.
 
 
+<br></br>
 
 ## 🗝️ Key points
 
@@ -413,3 +419,196 @@ private mutating func copyNodes() {
 - **연결 리스트는 머리(head)에 요소를 삽입하는 경우 O(1)의 시간 복잡도를 갖습니다.** 이는 리스트의 시작 부분에 요소를 삽입하는 작업이 상수 시간이 걸린다는 것을 의미합니다. 반면 배열은 머리에 요소를 삽입하는 경우 O(n)의 시간 복잡도를 갖습니다. 이는 기존 요소들을 이동시켜야 하기 때문입니다.
 - **Swift의 Sequence와 Collection과 같은 컬렉션 프로토콜을 준수함으로써 많은 유용한 메서드와 기능에 접근할 수 있습니다.** 이를 통해 익숙한 방식으로 연결 리스트를 다루기가 더욱 쉬워집니다.
 - **쓰기 시점 복사(COW) 동작을 통해 값 의미론을 유지하면서 좋은 성능을 유지할 수 있습니다.** COW를 사용하면 연결 리스트의 내부 저장소는 변경될 때만 복사되므로 데이터의 효율적인 공유와 메모리 사용량을 최적화할 수 있습니다.
+
+<br></br>
+
+# 🌱 연결리스트 문제 풀이
+
+<br></br>
+## 21. Merge Two Sorted Lists  (recursion)
+
+```swift
+class Solution {
+    func mergeTwoLists(_ list1: ListNode?, _ list2: ListNode?) -> ListNode? {
+        if list1 == nil { return list2 } //list1이 nil이면 list2 반환
+        if list2 == nil { return list1 } //list2이 nil이면 list1 반환
+
+        var result: ListNode? = ListNode() //값 없는 노드 생성
+        var tmp = result //result를 가리키는 tmp 변수 생성 
+        
+        var l1 = list1 //list1을 담는 변수 l1 생성
+        var l2 = list2 //list2을 담는 변수 l2 생성
+        
+        while l1 != nil && l2 != nil { //l1과 l2 둘다 nil이 아닐 동안 반복
+            if l1!.val >= l2!.val { //l1이 l2 보다 크거나 같을 경우(등호를 작을 경우에 사용해도 됨)
+                tmp!.next = l2! //tmp의 다음을 l2로 지정
+                l2 = l2!.next //비교 대상을 다음 노드로 변경
+                tmp = tmp!.next //다음 노드를 수정하기 위해 tmp 변경
+            }
+            else { //l1이 l2보다 작을 경우
+                tmp!.next = l1! //tmp의 다음을 l1로 지정
+                l1 = l1!.next //비교 대상을 다음 노드로 변경
+                tmp = tmp!.next //다음 노드를 수정하기 위해 tmp 변경
+            }
+            if l1 == nil { //l1이 빈 경우 l2를 다음 노드로 연결
+                tmp!.next = l2
+            } 
+            else if l2 == nil { //l2이 빈 경우 l1를 다음 노드로 연결
+                tmp!.next = l1
+            }
+        }
+        return result!.next
+    }
+}
+```
+
+### 풀이
+
+빈 노드를 생성해서 l1과 l2를 비교해 작은 값을 노드에 연결
+
+### 어려웠던 점
+
+처음엔 list1을 탐색하면서 list2에 삽입하고 싶었는데, 코드가 복잡해지고 반복문을 끝내는게 어려워서 솔루션을 참고했다.
+
+### **새로 알게된 개념**
+
+빈 노드를 생성해서 연결하는 방법이 있음을 확인하고, 새로 풀었다.
+
+<br></br>
+## 203. Remove Linked List Elements (recursion)
+
+```swift
+class Solution {
+    func removeElements(_ head: ListNode?, _ val: Int) -> ListNode? {
+        if head == nil { //빈 노드일 경우 nil 반환 
+            return nil
+        }
+        var currentNode = head //head 노드를 가리키는 currentNode 변수를 초기화
+        
+        while currentNode!.next != nil { //currentNode의 다음 참조가 nil이 아닐 동안 반복
+            if currentNode!.next?.val == val { //참조 노드의 val이 val과 일치하면 참조 노드를 다다음으로 수정해서 일치하는 노드 삭제
+                currentNode!.next =  currentNode!.next!.next
+            }
+            else { //다음 노드의 val과 val이 일치하지 않으면 현재 노드를 참조노드로 변경
+                currentNode = currentNode!.next 
+            }
+        } 
+        return head!.val == val ? head!.next : head! //헤드의 값이 val이면 헤드 다음을 반환, val과 다를 경우 head 반환 
+    }
+}
+```
+
+### 풀이
+
+currentNode의 다음 참조가 nil이 아닐 동안 반복해서 찾는 값과 동일할 경우 다음 노드가 아닌 다음다음 노드로 참조하도록 한다.
+
+### 어려웠던 점
+
+return값을 head로 해도 되는 지 몰라서 반환값을 어떻게 해야하는지 찾아보았다.
+
+### **새로 알게된 개념**
+
+노드가 할당되는 방식에 대해 생각해보았다.
+
+(솔루션을 둘러봤을 때 재귀로 푸는 방법도 있음을 알게 되었다. 내가 문제 옆에 recursion 써놨었는데,, 근데 재귀말고 다른 방식으로 풀어보고 싶어서 반복문으로 풀었다.)
+
+<br></br>
+## 206. Reverse Linked List   (recursion)
+
+```swift
+class Solution {
+    func reverseList(_ head: ListNode?) -> ListNode? {
+				//뒤집을 노드가 더 없을 때 재귀 호출을 종료
+				if head == nil || head!.next == nil { return head } //head나 head.next가 nil일 경우 head 반환
+
+        var cur: ListNode? = head //head를 가리키는 cur 변수 생성            
+        var result: ListNode? = reverseList(cur!.next) //함수에 next(=car.next)노드를 인자로 호출해서 나머지를 역순으로 뒤집음
+                //result 변수에는 나머지 리스트가 역순으로 뒤집힌 결과가 저장되어있음
+
+				//cur이 가리키는 노드를 역순으로 뒤집기
+        cur!.next!.next = cur //현재의 next의 next를 현재 노드로 변경
+        cur!.next = nil //현재 노드의 다음 참조를 nil로 설정하여 노드 사이클을 끊음
+        return result //result를 반환하여 노드를 역순으로 뒤집은 결과를 반환
+}
+```
+
+### **풀이**
+
+재귀로 풀었다. “내 next가 참조할 놈은 나”
+
+<br></br>
+## 876. Middle of the Linked List
+
+```swift
+class Solution {
+    func middleNode(_ head: ListNode?) -> ListNode? {
+        var currentNode = head //head를 가리키는 currentNode 변수 생성
+        var currentIndex = 0 //currentIndex 변수 생성
+      
+        if head == nil { return head } //head가 비었으면 head(nil) 반환
+        
+				// 연결 리스트의 노드 개수를 계산
+        while currentNode != nil { //currentNode가 nil이 아닐 동안 반복
+            currentNode = currentNode!.next //다음 참조 노드로 탐색할 노드 이동
+            currentIndex += 1 //인덱스 증가
+        }
+
+        if currentIndex % 2 == 0 { //인덱스가 짝수면 인덱스 1 더함
+            currentIndex += 1
+        }
+        
+        currentNode = head //current 노드를 head 노드로 초기화
+        
+				// 중간 노드를 찾기 위해 current 노드 이동을 반복
+        for i in 0..<(currentIndex/2){
+            currentNode = currentNode!.next 
+        }
+        
+        return currentNode //중간 노드 반환
+    }
+}
+```
+
+### **풀이**
+
+연결리스트 노드 개수를 계산한 후, 중간 노드까지 탐색하고 반환
+
+<br></br>
+
+## 1290. Convert Binary Number in a Linked List to Integer
+
+```swift
+class Solution1 {
+    func getDecimalValue(_ head: ListNode?) -> Int {
+        var currentNode = head //head를 가리키는 변수 생성
+        
+        var maxIndex: Double = 0.0 //최대 인덱스 계산할 변수 생성
+        var result: Int = 0 //결과 변수 생성
+        
+        while currentNode!.next != nil { //탐색할 노드의 참조가 nil이 아닐 동안 반복
+            maxIndex += 1 //인덱스 증가
+            currentNode = currentNode!.next //탐색할 노드를 다음 노드로 변경
+        }
+        
+        currentNode = head //다시 head를 가리키도록 할당
+        
+        for i in 0...Int(maxIndex) { //maxIndex만큼 반복
+            if currentNode!.val == 1 { //노드의 값이 1일 경우
+                result += Int(pow(2.0, maxIndex - Double(i))) //2^(maxIndex-i)을 result 변수에 저장 
+            }
+            currentNode = currentNode!.next //탐색할 노드를 다음 노드로 변경
+        }
+        return result
+    }
+}
+```
+
+### **풀이**
+
+N승 계산할 때는 pow를 사용하면 된다.
+
+pow반환값이 double이라는 사실을 알게 되었다.
+
+### **새로 알게된 개념**
+
+2의 n승 계산을 어떻게 하는 지 몰랐다!

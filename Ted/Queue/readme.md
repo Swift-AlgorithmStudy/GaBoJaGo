@@ -2,7 +2,7 @@
 
 큐 스택이란 영화 티켓을 구매하거나, 프린트 등을 하기 위해 줄을 서는 것과 매우 비슷한 자료 구조입니다.
 
-큐는 ‘**FIFO’** 데이터 ****구조를 사용하여, 처음으로 추가된 요소가 가장 처음으로 제거되는 형식입니다.
+큐는 ‘**FIFO’** 데이터 구조를 사용하여, 처음으로 추가된 요소가 가장 처음으로 제거되는 형식입니다.
 
 ## Commom operations
 
@@ -28,7 +28,8 @@ public protocol Queue {
 
 영화관에서 표를 사기 위해 줄을 서고 있는 사람들을 생각하면 될 것입니다.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a527919e-3420-4bb9-b219-4eb8b29ab3a7/Untitled.png)
+<img width="453" alt="image" src="https://github.com/Swift-AlgorithmStudy/GaBoJaGo/assets/104834390/fca0e2c3-2a1c-4c5d-b123-e714ca9f4321">
+
 
 Ray가 티켓을 사면 줄을 나가는 방식이 dequeue()를 한 것입니다.
 
@@ -45,7 +46,7 @@ Vicki가 줄을 서기 위해 들어온 방식은 enqueue()를 한 것입니다.
 
 ## Array-based implementation
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/08cb56b0-d5f2-4042-aba0-69df12cb94e0/Untitled.png)
+<img width="435" alt="image" src="https://github.com/Swift-AlgorithmStudy/GaBoJaGo/assets/104834390/6dcf8a96-cce5-476e-80a1-dd4c65b63f06">
 
 배열을 통해서 큐를 생성할 수 있습니다.
 
@@ -86,11 +87,11 @@ public mutating func enqueue(_ element: T) -> Bool {
 
  배열의 뒤에 빈 공간이 있기 때문에 이 연산은 O(1)입니다.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/040f49d9-b6ac-43f8-9860-3e51fd15ee24/Untitled.png)
+<img width="436" alt="image" src="https://github.com/Swift-AlgorithmStudy/GaBoJaGo/assets/104834390/0929ac6f-626f-4556-858e-8e6457bfb2ef">
 
 하지만 결국 배열이 가득 차게 될 것이고, 만약 공간을 더 할당하고 싶으면, 추가적인 공간을 위해 배열을 resize해줘야합니다.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c4fb4a3a-7d4b-4d0e-bbbb-65f9b32296b7/Untitled.png)
+<img width="454" alt="image" src="https://github.com/Swift-AlgorithmStudy/GaBoJaGo/assets/104834390/b9bbdde3-16a1-4979-bca2-2aa49d91320f">
 
 여기서 놀라운 점은 배열의 크기를 변경(Sizing)하는 것은 O(n)연산인데, enqueue는 O(1)이라는 점입니다. 
 
@@ -118,7 +119,7 @@ public mutating func dequeue() -> T? {
 
 만약 큐가 비어있다면, nil을 반환하고, 만약 아니라면, 배열의 첫 번째 요소를 제거하고 반환합니다.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/5b92e6a4-3536-4c39-a7c5-5a20c8448174/Untitled.png)
+<img width="413" alt="image" src="https://github.com/Swift-AlgorithmStudy/GaBoJaGo/assets/104834390/217e1b28-1d1b-446f-8127-9001f3554221">
 
 큐의 첫 번째 요소를 제거하는 것은 O(n)의 시간복잡도를 가집니다. 
 
@@ -138,7 +139,7 @@ extension QueueArray: CustomStringConvertible {
 
 ### 장점과 단점
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/d7fdc382-1d68-43b7-98a4-da02d0ade45b/Untitled.png)
+<img width="473" alt="image" src="https://github.com/Swift-AlgorithmStudy/GaBoJaGo/assets/104834390/29cf1906-35af-4457-aa65-a79b9f81d299">
 
 Array-based Queue를 이용하면 enqueue을 통해 매우 빠른 연산을 수행할 수 있습니다.
 
@@ -169,8 +170,7 @@ public func enqueue(_ element: T) -> Bool {
   return true
 }
 ```
-
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a4f6341f-f2b1-48c7-bfad-df3f6a347506/Untitled.png)
+<img width="478" alt="image" src="https://github.com/Swift-AlgorithmStudy/GaBoJaGo/assets/104834390/f1068189-6227-421d-82bd-e462aba9d565">
 
 이것은 O(1)의 시간 복잡도를 가집니다.
 
@@ -189,7 +189,7 @@ public func dequeue() -> T? {
 
 리스트가 비어있는지 확인 후 없다면 nil을 반환하고, 있다면 첫 번째의 요소를 제거하고 반환합니다.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/fb387ffa-9fb8-4e56-b870-b2419420532e/Untitled.png)
+<img width="541" alt="image" src="https://github.com/Swift-AlgorithmStudy/GaBoJaGo/assets/104834390/0223cbd0-cc42-415c-b520-a5cc6a903b94">
 
 요소들을 이동할 필요가 없기 때문에, O(1)의 시간 복잡도를 가집니다.
 
@@ -221,7 +221,7 @@ extension QueueLinkedList: CustomStringConvertible {
 
 ### 장점과 단점
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/bea8120c-aaf7-4dba-afcb-c51884b64cc2/Untitled.png)
+<img width="431" alt="image" src="https://github.com/Swift-AlgorithmStudy/GaBoJaGo/assets/104834390/660f64c0-7db1-4bef-a733-6bac29290e98">
 
 Linked List로 만들면 dequeueing 또한 O(1)의 시간 복잡도를 가집니다. 
 
@@ -239,38 +239,37 @@ circular buffer라고도 불리는 ring buffer는, 고정된 사이즈의 배열
 
 이 자료 구조는 끝에서 제거할 항목이 없을 때 시작점으로 돌아가도록 구성되어 있습니다.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/603d383f-ebec-4f1d-b625-47a47c57310a/Untitled.png)
+<img width="279" alt="image" src="https://github.com/Swift-AlgorithmStudy/GaBoJaGo/assets/104834390/a5b13540-3937-45bd-ae15-ce0b6879bc4b">
 
 크기가 4로 고정된 ring buffer를 생성합니다. ring buffer에는 두 가지를 추적할 수 있는 두 개의 포인터가 있습니다.
 
 1. **read pointer**는 큐의 앞 부분을 추적합니다.
 2. **write pointer**는 이용 가능한 다음 슬롯을 추적하여 이미 읽힌(read) 요소를 재정의(override)할 수 있습니다.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c1421c56-5232-4f3d-8b86-0735d1a59544/Untitled.png)
+<img width="285" alt="image" src="https://github.com/Swift-AlgorithmStudy/GaBoJaGo/assets/104834390/6fd2bc61-ed07-4ad2-8cd6-13e2d869f446">
 
 아이템을 큐에 넣을 때마다, write pointer는 하나가 증가합니다.
 
 여러 요소를 더 추가해보겠습니다.
-
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/9f180646-bed0-45d5-85b9-d29b049e69c4/Untitled.png)
+<img width="267" alt="image" src="https://github.com/Swift-AlgorithmStudy/GaBoJaGo/assets/104834390/3b0dac29-7b48-49eb-9491-d61bc7cdf198">
 
 write pointer는 read pointer에 2칸 더 앞서있습니다. 이는 큐가 비어있지 않다는 뜻입니다.
 
 여기서 2개의 아이템을 dequeue해보겠습니다.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/05b3aa9a-21be-4481-89fb-dd900e11176a/Untitled.png)
+<img width="309" alt="image" src="https://github.com/Swift-AlgorithmStudy/GaBoJaGo/assets/104834390/44550bd8-72bb-43be-8799-2ed9e0ea8f83">
 
 Dequeuing하는 것은 ring buffer를 읽는 것과 같습니다. 
 
 그 다음 하나의 아이템을 추가해보겠습니다.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/645ba2ba-095e-4c2d-a15e-4228993387e6/Untitled.png)
+<img width="302" alt="image" src="https://github.com/Swift-AlgorithmStudy/GaBoJaGo/assets/104834390/bf629ffe-d317-4308-ae54-c07e8b67756b">
 
 write pointer가 끝에 도달했기 때문에, 시작 인덱스로 돌아갑니다. 이로 인해 circular buffer라고 불립니다.
 
 마지막으로, 두 개의 아이템을 dequeue해보겠습니다.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/9345cc08-f07c-44d3-a486-3e955dddf1c7/Untitled.png)
+<img width="317" alt="image" src="https://github.com/Swift-AlgorithmStudy/GaBoJaGo/assets/104834390/1bb0a307-1e38-4fce-98f9-ed812b6ed602">
 
 read pointer 또한 시작으로 돌아갔습니다.
 
@@ -338,7 +337,7 @@ extension QueueRingBuffer: CustomStringConv ertible {
 
 ### 장점과 단점
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/0cb87382-c060-45f0-afa9-f7b558adb029/Untitled.png)
+<img width="471" alt="image" src="https://github.com/Swift-AlgorithmStudy/GaBoJaGo/assets/104834390/3bf16f84-f12b-4fbf-b9ba-a37973af3d88">
 
 linked list와 시간 복잡도는 같지만, 공간 복잡도가 다릅니다. 
 
@@ -354,7 +353,7 @@ public struct QueueStack<T> : Queue {
 }
 ```
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4367c5e2-46bd-4234-af9d-f24333d6752e/Untitled.png)
+<img width="490" alt="image" src="https://github.com/Swift-AlgorithmStudy/GaBoJaGo/assets/104834390/72f56a45-35d7-4fa0-ba8f-37388bb89ddf">
 
 enqueue를 하려고 할 때는 오른쪽 스택에 넣어주면 되고, dequeue를 할 때는오른쪽 스택의 순서를 변경하여 왼쪽 스택에 넣고, 그 중에서 요소를 선택하면 FIFO 구조처럼 데이터를 다룰 수 있습니다.
 
@@ -434,7 +433,7 @@ extension QueueStack: CustomStringConvertible {
 
 ### 장점과 단점
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/34953e68-1f90-4c3c-8fe3-0bda5779dc4f/Untitled.png)
+<img width="483" alt="image" src="https://github.com/Swift-AlgorithmStudy/GaBoJaGo/assets/104834390/c4382263-a59d-478d-9999-d476b8f2b822">
 
 enqueue는 O(1)가 나타나고, dequeue 또한 평균 O(1) 연산이 실행됩니다.
 
@@ -446,9 +445,7 @@ worst-case가 O(n)까지 갈 수 있지만, 크기를 늘려주기 때문에, �
 
 linked list는 연속된 공간에 저장되어 있는 것이 아니지만, 스택은 연속된 공간에 할당되어 있기 때문에 훨씬 더 효율적입니다.
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2b701ef1-e22c-46c3-b694-3e9b24c1b601/Untitled.png)
-
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a8d6b537-a3a5-40f1-a2e6-9bd93cc5a2d3/Untitled.png)
+<img width="438" alt="image" src="https://github.com/Swift-AlgorithmStudy/GaBoJaGo/assets/104834390/1d4c3b91-be03-4735-b580-6bcca504b533">
 
 ## Key points
 

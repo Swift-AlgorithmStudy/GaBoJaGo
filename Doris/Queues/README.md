@@ -1,7 +1,7 @@
 # Queues
 
 큐는 대기열에서 무언가를 기다리는 것과 마찬가지로, `FIFO(First-In First-Out)` 즉, 먼저 추가된 요소가 항상 먼저 제거되는 순서를 가집니다. </br>
-따라서 큐는 `요소의 순서를 유지`해야할 때 유용합니다. </br>
+따라서 큐는 `요소의 순서를 유지`해야할 때 유용합니다. </br></br>
 
 ## 💡 Common Operations
 > 큐의 핵심 동작을 알아보자 ! </br>
@@ -35,6 +35,8 @@ public protocol Queue {
 
 ## 💡 Implementation
 > 큐를 구현하는 다양한 방법들에 대해 알아보자 ! </br>
+
+</br>
 
 ### 1. Array-based implementatin
 > 배열 기반으로 큐 구현하기 ! </br>
@@ -94,6 +96,8 @@ public mutating func enqueue(_ element: T) -> Bool {
 
 크기 조정의 경우 새로운 메모리를 할당하고 기존 데이터를 새 배열로 복사해야하기 때문에 `O(n)`의 시간 복잡도를 가집니다. </br>
 
+</br>
+
 #### Dequeue
 
 ```swift
@@ -108,7 +112,7 @@ public mutating func dequeue() -> T? {
 
 <img src="./png/add.png" alt="pic" width="50%" height="50%">
 
-큐가 배열로 구현된 경우, 큐의 첫 번째 요소가 제거될 때 *나머지 요소들은 모두 한 칸씩 앞으로 이동*해야하므로 `O(n)`의 시간복잡도를 가집니다. </br>
+큐가 배열로 구현된 경우, 큐의 첫 번째 요소가 제거될 때 *나머지 요소들은 모두 한 칸씩 앞으로 이동*해야하므로 `O(n)`의 시간복잡도를 가집니다. </br></br>
 
 #### Debug and test
 
@@ -123,6 +127,7 @@ extension QueueArray: CustomStringConvertible {
 위의 코드는 QueueArray 구조체가 CustomStringConvertible 프로토콜을 채택하도록 하여, 큐의 내용을 문자열 형태로 표시하는 기능을 추가하는 것 입니다. </br>
 
 반환 값은 내부 배열(array)의 description 연산 프로퍼티를 호출한 결과입니다. </br>
+</br>
 
 #### 📍 정리
 
@@ -149,7 +154,7 @@ public class QueueLinkedList<T>: Queue {
 
 QueueLinkedList라는 제네릭 클래스를 생성하고, Queue 프로토콜을 구현하는 방법입니다. </br>
 
-QueueLinkedList는 DoublyLinkedList라는 클래스를 사용하여 구현되며, QueueArray와 비슷하게 동작합니다. </br>
+QueueLinkedList는 DoublyLinkedList라는 클래스를 사용하여 구현되며, QueueArray와 비슷하게 동작합니다. </br></br>
 
 #### Enqueue
 
@@ -169,7 +174,7 @@ public func enqueue(_ element: T) -> Bool {
 
 새로운 노드를 큐의 맨 뒤에 추가할 때, 이전 마지막 노드의 next와 새로운 노드의 previous를 업데이트하는 단계를 포함합니다. </br>
 
-이 때, 시간 복잡도는 O(1)입니다. </br>
+이 때, 시간 복잡도는 O(1)입니다. </br></br>
 
 #### Dequeue
 
@@ -289,7 +294,7 @@ read 포인터를 오른쪽으로 2칸 이동해줌으로써 제거됩니다. </
 
 다음과 같이 요소를 하나 더 추가해, write 포인터가 배열의 끝에 도달하면, `시작 인덱스`로 다시 돌아가게 됩니다. </br>
 
-<img src="./png/큐13png" alt="pic" width="50%" height="50%">
+<img src="./png/큐13.png" alt="pic" width="50%" height="50%">
 </br>
 
 두 개의 요소를 제거해 read포인터도 시작 인덱스로 돌아가게 되어 read와 write 포인터의 위치가 같아지게 되면, 큐는 비어있음을 의미합니다. </br>
@@ -451,6 +456,7 @@ public mutating func dequeue() -> T? {
 
 3. rightStack에 있는 모든 값들을 leftStack으로 옮겼기 떄문에, rightStack의 값을 모두 제거합니다.
 4. leftStack()의 첫 번째 값을 반환합니다.
+</br>
 
 **❗️ 주의 ❗️** </br>
 `rightStack의 모든 요소를 leftStack으로 옯기는 것이 아니라, leftStack이 비어있는 경우에만 옮겨줍니다.` </br>
@@ -479,12 +485,36 @@ leftStack과 rightStack을 뒤집어서 합쳐주고 모든 요소를 출력하�
 
 dequeue 작업에서 불필요한 요소 이동을 피할 수 있고, 효율성이 높아집니다. </br>
 
-공간복잡도 측면에서도, 고정 크기의 제한이 없고, 완전히 동적이며 2배씩 늘릴 수도 있으므로 유연합니다. </br>
+공간복잡도 측면에서도, `고정 크기의 제한이 없고`, 완전히 동적이며 2배씩 늘릴 수도 있으므로 유연합니다. </br>
 
-배열 요소는 메모리 블록 내에서 서로 인접하기 때문에 많은 수의 요소가 처음 액세스할 때 캐시에 로드됩니다. </br>
+메모리 블록에서 배열 요소가 서로 옆에 있기 때문에 많은 수의 요소가 처음 액세스할 때 캐시에 로드됩니다. </br>
 
 배열은 O(n)이 필요하지만 간단한 복사 작업에 대해서는 매우 빠르고, 메모리 대역폭 근처에서 발생하는 빠른 O(n)의 값을 가집니다. </br>
 
+</br>
+
+* 그림 1
+
+<img src="./png/큐19.png" alt="pic" width="50%" height="50%"> </br>
+
+* 그림 2
+
+<img src="./png/큐20.png" alt="pic" width="50%" height="50%"> </br>
+
+> 요소들이 연속적인 메모리 블록에 있지 않은 linked lists. </br>
+> 로컬이 아닌 경우 캐시 누락이 더 많아져 액세스 시간이 길어질 수 있습니다.
+
+</br>
+</br>
+</br>
 
 ## 💡 Key Points 
 > 중요 중요 중요 </br>
+
+* Queue는 `FIFO(First in First Out)`을 따릅니다.
+* `Enqueue`를 통해 큐의 마지막에 요소를 추가합니다.
+* `Dequeue`는 큐의 맨 앞 요소를 제거합니다.
+* `배열(Array) 기반의 큐`는 연속적인 메모리 블록에 놓이지만, `연결 리스트(Linked List) 기반의 큐`의 요소는 더 분산되어 있으며 캐시 미스(cashe miss) 가능성이 있습니다.
+* `Ring-buffer 기반의 큐` 구현은 큐의 크기가 고정된 경우에 적합합니다.
+* `Double-stack 기반의 큐`는 다른 데이터 구조에 비해 dequeue의 시간 복잡도를 평균 `O(1)`로 개선할 수 있습니다.
+* 이중 스택 구현은 `공간 지역성(storage locality)` 측면에서 연결 리스트보다 뛰어납니다.

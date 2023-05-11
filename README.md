@@ -114,6 +114,6 @@ Time: 0 ms (100.00%), Space: 14.2 MB (57.69%) - LeetHub
 
 | 날짜 | 기출 유형 | 문제명 | 정리 |
 | :--- | :--- | :--- | :--- |
-| 2023.05.01 | Stacks | 682. Baseball Game </br> 1047. Remove All Adjacent Duplicates In String </br> 1598. Crawler Log Folder </br> 1614. Maximum Nesting Depth of the Parentheses </br> 1700. Number of Students Unable to Eat Lunch | <a href="https://github.com/Swift-AlgorithmStudy/GaBoJaGo/blob/main/Radin/Stacks/README.md"> 🧞‍♂️ Radin </a> |
+| 2023.05.01 | Stacks | 682. Baseball Game </br> 1047. Remove All Adjacent Duplicates In String </br> 1598. Crawler Log Folder </br> 1614. Maximum Nesting Depth of the Parentheses </br> 1700. Number of Students Unable to Eat Lunch | <a href="https://github.com/Swift-AlgorithmStudy/GaBoJaGo/blob/main/Kiwi/Stack/README.md"> 🥝 Kiwi </a> |
 | 2023.05.04 <br> 2023.05.08 | Linked Lists | 21. Merge Two Sorted Lists </br> 203. Remove Linked List Elements </br> 206. Reverse Linked List </br> 876. Middle of the Linked List </br> 1290. Convert Binary Number in a Linked List to Integer | <a href="https://github.com/Swift-AlgorithmStudy/GaBoJaGo/blob/main/Radin/LinkedLists/README.md"> 🧞‍♂️ Radin </a> |
 | 2023.05.12 | Queues | 232. Implement Queue using Stacks </br> 225. Implement Stack using Queues </br> 387. First Unique Character in a String </br> 1700. Number of Students Unable to Eat Luncht </br> 2073. Time Needed to Buy Tickets | |

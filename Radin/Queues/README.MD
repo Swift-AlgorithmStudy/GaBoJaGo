@@ -196,7 +196,7 @@ public struct QueueRingBuffer<T>: Queue {
 
 큐의 요소를 제거할 때, 오른쪽 스택을 뒤집고 왼쪽 스택에 배치하여 FIFO 순서를 사용하여 요소를 검색할 수 있습니다.
 
-**Queue 프로토콜을 채택한 generic  QueueRingBuffer 구조체 정의**
+**Queue 프로토콜을 채택한 generic  QueueStack 구조체 정의**
 
 ```swift
 public struct QueueStack<T> : Queue {

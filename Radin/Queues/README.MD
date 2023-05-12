@@ -37,26 +37,26 @@ public protocol Queue {
 
 ```swift
 public struct QueueArray<T>: Queue {
-  private var array: [T] = []
-  public init() {}
+	private var array: [T] = []
+	public init() {}
 
-  public var isEmpty: Bool {
-	  array.isEmpty // 큐가 비었는지 확인 O(1)
-  }
+	public var isEmpty: Bool {
+	 	array.isEmpty // 큐가 비었는지 확인 O(1)
+	}
 
 	public var peek: T? {
-	  array.first // 큐의 첫 요소 반환 O(1)
+	  	array.first // 큐의 첫 요소 반환 O(1)
 	}
 
 	public mutating func enqueue(_ element: T) -> Bool {
 		array.append(element) //큐 뒤에 요소 추가하기, 배열 뒤에 빈 공간이 있기 때문에 O(1)
-	  return true
+	  	return true
 	}
 	//여러 요소를 추가하면, 배열은 결국 가득 찰 것입니다. 
 	//할당된 공간보다 더 많이 사용하고 싶을 때, 배열은 추가 공간을 만들기 위해 크기를 조정해야 합니다.
 
 	public mutating func dequeue() -> T? {
-	  isEmpty ? nil : array.removeFirst()
+		isEmpty ? nil : array.removeFirst()
 	}
 	//대기열이 비어 있다면, dequeue는 nil을 반환. 그렇지 않다면, 배열의 앞에서 요소를 제거하고 반환 O(n) 
 	//대기열 제거는 배열의 시작 부분에서 요소를 제거합니다. 이것은 배열의 나머지 모든 요소를 메모리에서 이동해야 하기 때문에 항상 선형 시간 작업입니다.
@@ -90,19 +90,19 @@ Enqueue는 O(1) append 덕분에 평균적으로 매우 빠릅니다.
 ```swift
 public class QueueLinkedList<T>: Queue {
 	private var list = DoublyLinkedList<T>()
-  public init() {}
+  	public init() {}
 
 	public func enqueue(_ element: T) -> Bool {
-	  list.append(element)
-	  return true
+		list.append(element)
+		return true
 	}
 	//리스트의 뒤에서, 이중 연결 리스트은 새로운 노드에 대한 꼬리 노드의 이전 및 다음 참조를 업데이트할 것이다. O(1)
 	
 	public func dequeue() -> T? {
-	  guard !list.isEmpty, let element = list.first else {
-	    return nil
-	  }
-	  return list.remove(element)
+		guard !list.isEmpty, let element = list.first else {
+			return nil
+		}
+		return list.remove(element)
 	} 
 	//리스트가 비어 있지 않고 큐의 첫 번째 요소가 존재하는지 확인합니다. 
 	//첫번째 요소가 없으면 nil을 반환하고, 요소가 있으면 큐 앞에 있는 요소를 제거하고 반환한다.
@@ -111,11 +111,11 @@ public class QueueLinkedList<T>: Queue {
 	//대신, 링크된 목록의 처음 두 노드 사이의 다음 및 이전 포인터를 업데이트하기만 하면 됩니다.
 	
 	public var peek: T? {
-	  list.first?.value
+		list.first?.value
 	}
 	
 	public var isEmpty: Bool {
-	  list.isEmpty //DoublyLinkedList에 구현
+		list.isEmpty //DoublyLinkedList에 구현
 	}
 }
 ```
@@ -147,28 +147,30 @@ Enqueue 작업은 새 요소를 버퍼의 다음 위치에 추가하고, Dequeue
 
 ```swift
 public struct QueueRingBuffer<T>: Queue {
-  private var ringBuffer: RingBuffer<T>
+	private var ringBuffer: RingBuffer<T>
 
-  public init(count: Int) {
-    ringBuffer = RingBuffer<T>(count: count)
-  }
+	public init(count: Int) {
+		ringBuffer = RingBuffer<T>(count: count)
+	}
 	//링 버퍼의 크기가 고정되어 있기 때문에 count 매개 변수를 포함해야 합니다.
 
-  public var isEmpty: Bool { // O(1)
-    ringBuffer.isEmpty
-  }
-
-  public var peek: T? { // O(1)
-    ringBuffer.first
-  }
-	public mutating func enqueue(_ element: T) -> Bool { //O(1)
-	  ringBuffer.write(element)
+	public var isEmpty: Bool { // O(1)
+		ringBuffer.isEmpty
 	}
+
+	public var peek: T? { // O(1)
+		ringBuffer.first
+	}
+	
+	public mutating func enqueue(_ element: T) -> Bool { //O(1)
+		ringBuffer.write(element)
+	}
+	
 	//요소를 추가하려면, write(_:)를 호출하기만 하면 됩니다. 이는 쓰기 포인터를 하나씩 증가시킵니다.
 	//대기열의 크기가 고정되어 있기 때문에, 요소가 성공적으로 추가되었는지 여부를 나타내기 위해 true 또는 false를 반환해야 합니다. 
-	
+
 	public mutating func dequeue() -> T? {
-	  ringBuffer.read()
+		ringBuffer.read()
 	}
 	//큐 앞쪽에서 항목을 제거하려면, read()를 호출하기만 하면 됩니다. 
 	//큐의 뒤에서, 링버퍼가 비어 있는지 확인하고, 비었다면 0을 반환합니다. 
@@ -200,35 +202,35 @@ public struct QueueRingBuffer<T>: Queue {
 
 ```swift
 public struct QueueStack<T> : Queue {
-  private var leftStack: [T] = []
-  private var rightStack: [T] = []
-  public init() {}
+	private var leftStack: [T] = []
+	private var rightStack: [T] = []
+	public init() {}
 
 	public var isEmpty: Bool { //O(1)
-	  leftStack.isEmpty && rightStack.isEmpty
+		leftStack.isEmpty && rightStack.isEmpty
 	}
 	//왼쪽과 오른쪽 스택이 모두 비어 있는지 확인합니다. 
 	//대기열을 제거해야 할 요소가 없고, 새로운 요소가 대기열에 추가되지 않았다는 것을 의미합니다.
-	
+
 	public var peek: T? { //O(1) 
-	  !leftStack.isEmpty ? leftStack.last : rightStack.first
+		!leftStack.isEmpty ? leftStack.last : rightStack.first
 	}
 	//왼쪽 스택이 비어 있지 않다면, 이 스택 위에 있는 요소는 큐 앞에 있는 것입니다.
 	//왼쪽 스택이 비어 있으면, 오른쪽 스택이 반전되어 왼쪽 스택에 배치됩니다.
 	//이 경우, 오른쪽 스택 하단의 요소는 대기열의 다음입니다.
-	
+
 	public mutating func enqueue(_ element: T) -> Bool { // O(1)
-	  rightStack.append(element)
-	  return true
+		rightStack.append(element)
+		return true
 	} 
 	//오른쪽 스택이 삽입하는 데 사용되므로 배열에 추가하여 스택으로 푸시하기만 하면 됩니다. 
 
 	public mutating func dequeue() -> T? {
-	  if leftStack.isEmpty { // 왼쪽 스택이 비었는지 확인
-	    leftStack = rightStack.reversed() // 왼쪽 스택이 비었다면, 오른쪽 스택 순서를 뒤집어 왼쪽 스택에 저장 
-	    rightStack.removeAll() // 모든 것을 왼쪽으로 옮겼으니,오른쪽 스택 전체 삭제
-	  }
-	  return leftStack.popLast() // 왼쪽 스택에서 마지막 요소를 제거
+		if leftStack.isEmpty { // 왼쪽 스택이 비었는지 확인
+			leftStack = rightStack.reversed() // 왼쪽 스택이 비었다면, 오른쪽 스택 순서를 뒤집어 왼쪽 스택에 저장 
+			rightStack.removeAll() // 모든 것을 왼쪽으로 옮겼으니,오른쪽 스택 전체 삭제
+		}
+		return leftStack.popLast() // 왼쪽 스택에서 마지막 요소를 제거
 	}
 	//왼쪽 스택이 비어 있을 때만 오른쪽 스택의 요소를 전송한다는 것을 기억하세요!
 	//배열의 내용을 뒤집는 것은 O(n)입니다. 전체 대기열 비용은 여전히 O(1) 상각됩니다. 

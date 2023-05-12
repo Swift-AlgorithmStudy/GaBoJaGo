@@ -514,19 +514,31 @@ print문 제거 주의
 
 ```swift
 func timeRequiredToBuy(_ tickets: [Int], _ k: Int) -> Int {
-    tickets.enumerated().reduce(0) { $0 + min(tickets[k], $1.1) + ($1.1 >= tickets[k] && $1.0 > k ? -1 : 0) }
-}
+        var ticket: [Int] = tickets
+        var count: Int = 0
+        
+        while true {
+            for i in 0 ..< ticket.count {
+                if ticket[i] > 0 {
+                    ticket[i] -= 1
+                    count += 1
+                }
+                if ticket[k] == 0 {
+                    return count
+                }
+            }
+        }
+    }
 ```
 
 ### 설명.
 
-능지처참.
+반복문을 통해 모든 요소를 1씩 빼는 동시에 count를 올린다. k인덱스 요소 값이 0이 될때 count를 리턴한다.
 
 ### 주의할점.
 
-알콜성 치매.
-지능 저하.
-30대 이슈.
+의지의 차이
+
 
 
 

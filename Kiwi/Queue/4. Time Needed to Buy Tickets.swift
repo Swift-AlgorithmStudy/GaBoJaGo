@@ -6,5 +6,18 @@
 //
 
 func timeRequiredToBuy(_ tickets: [Int], _ k: Int) -> Int {
-    tickets.enumerated().reduce(0) { $0 + min(tickets[k], $1.1) + ($1.1 >= tickets[k] && $1.0 > k ? -1 : 0) }
-}
+        var ticket: [Int] = tickets
+        var count: Int = 0
+        
+        while true {
+            for i in 0 ..< ticket.count {
+                if ticket[i] > 0 {
+                    ticket[i] -= 1
+                    count += 1
+                }
+                if ticket[k] == 0 {
+                    return count
+                }
+            }
+        }
+    }

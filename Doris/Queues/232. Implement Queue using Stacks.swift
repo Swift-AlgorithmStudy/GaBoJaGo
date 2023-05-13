@@ -38,10 +38,11 @@ class MyQueue {
  */
 
  /*
- 
- ❓ pop() 할 때 꼭 leftStack을 rightStack의 반대로 정의하는 이유
- 
- leftStack = rightStack으로 두고
- 반환받는 값을 leftStack.removeLast()로 했는데 안됨 
 
+ ❗️ 왜 냐 면 ❗️
+ Stack에는 removeLast() 메서드가 없으니깐 ! 
+ 대신에 popLast() 써야됨
+
+⭐️ Swift에서 Stack 자료구조는 일반적으로 배열(Array)을 이용하여 구현되는데
+Stack에서 원소를 제거할 때, 배열의 popLast() 메소드를 사용하여 구현함 ⭐️
  */

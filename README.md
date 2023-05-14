@@ -28,7 +28,7 @@
       <img src="https://avatars.githubusercontent.com/GYURI-PARK" alt="프로필 사진" style="width: 150px;">
     </td>
     <td>
-      <img src="https://avatars.githubusercontent.com/hunyongseong" alt="프로필 사진" style="width: 150px;">
+      <img src="https://avatars.githubusercontent.com/dayo2n" alt="프로필 사진" style="width: 150px;">
     </td>
     <td>
       <img src="https://avatars.githubusercontent.com/kiwi1023" alt="프로필 사진" style="width: 150px;">

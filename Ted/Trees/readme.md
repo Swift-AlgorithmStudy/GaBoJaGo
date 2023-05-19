@@ -177,6 +177,7 @@ ginger ale
 bitter lemon
 milk
 ```
+보통 중위 순회를 이용하여 DFS를 활용합니다.
 
 ### Level-order traversal
 

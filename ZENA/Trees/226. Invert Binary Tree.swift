@@ -1,3 +1,6 @@
+
+// https://leetcode.com/problems/invert-binary-tree/description/
+
 class Solution {
     func invertTree(_ root: TreeNode?) -> TreeNode? {
         if let root = root {
@@ -22,4 +25,16 @@ class Solution {
     }
 }
 
+
+// Ted
+
+class Solution {
+    func invertTree(_ root: TreeNode?) -> TreeNode? {
+        guard let root = root else { return nil }
+        
+        (root.left, root.right) = (invertTree(root.right), invertTree(root.left))
+        
+        return root
+    }
+}
 

@@ -163,7 +163,7 @@ insert는 node를 **생성**하거나 (만약 nil이었다면), node를 **반환
 
 </br>
 
-<img width="60%" height="60%"alt="image" src="https://github.com/GYURI-PARK/SwiftUI_Archive/assets/93391058/f129e9e1-a0bf-471a-9643-d8dc0dbe83e1">
+<img width="60%" height="60%" alt="image" src="https://github.com/GYURI-PARK/SwiftUI_Archive/assets/93391058/f129e9e1-a0bf-471a-9643-d8dc0dbe83e1">
 
 </br>
 

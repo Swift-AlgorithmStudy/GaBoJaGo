@@ -14,8 +14,6 @@
  * }
  */
 
- // 이거 진짜 모르겠어요 ㅜㅜㅜㅜㅜㅜ
-
 class Solution {
     func sumRootToLeaf(_ root: TreeNode?) -> Int {
 

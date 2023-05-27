@@ -16,23 +16,23 @@
 
 class Solution {
     func sumRootToLeaf(_ root: TreeNode?) -> Int {
-
-        guard let root = root else { return 0 } 
         var res: Int = 0
 
-        func path(_ tmp: String, _ res: Int, _ root: TreeNode?) {
-            guard let root = root else { return }
-            var tmp: String = ""
-            var res = res
-            tmp += "\(root.val)"
+        func path(_ node: TreeNode?, _ tmp: String) {
+            guard let node = node else { return }
+            let newTmp = tmp + "\(node.val)"
 
-            if root.left == nil && root.right == nil {
-                res += Int(tmp, radix: 2) ?? 0
-            } else {
-                path("", res, root.left)
-                path("", res, root.right)
+            guard node.left == nil && node.right == nil else {
+                // 리프노드가 아닐경우에만 실행
+                path(node.left, newTmp)
+                path(node.right, newTmp)
+                return
             }
+
+            res += Int(newTmp, radix: 2) ?? 0
         }
+
+        path(root, "")
         return res
     }
 }

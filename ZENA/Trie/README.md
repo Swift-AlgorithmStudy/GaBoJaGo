@@ -1,6 +1,7 @@
+# Trie
 트라이는 영단어처럼 컬렉션으로 나타낼 수 있는 저장데이터에 특화된 트리이다.
 
-![스크린샷 2023-05-30 오전 10.36.29.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/49bd3dda-aa43-4c60-9188-7a0b73830a84/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-05-30_%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB_10.36.29.png)
+<img width="552" alt="스크린샷 2023-05-30 오전 10 36 29" src="https://github.com/Swift-AlgorithmStudy/GaBoJaGo/assets/57654681/70bfeefa-2d7f-4139-85f8-a0aef35bb096">
 
 각각의 문자는 마지막 노드가 종료되는 노드에 맵핑된다.(?) 트라이의 이점은 접두어의 매칭 맥락에서 가장 잘 묘사된다.
 
@@ -29,15 +30,15 @@ class EnglishDictionary {
 
 먼저, C를 가진 노드를 찾겠지. 그럼 다른 브랜치들은 search 과정에서 바로 배제된다.
 
-![스크린샷 2023-05-30 오후 5.49.20.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/e3a7bda1-fe3f-4732-9569-b9a4781ec1d8/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-05-30_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_5.49.20.png)
+<img width="520" alt="스크린샷 2023-05-30 오후 5 49 20" src="https://github.com/Swift-AlgorithmStudy/GaBoJaGo/assets/57654681/8e42decf-67e1-4f64-b6c7-40e258313857">
 
 다음으로, U라는 단어를 가진 노드를 찾아 넘어간다.
 
-![스크린샷 2023-05-30 오후 5.49.29.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c61663b4-74ec-4aed-8859-044841e2832f/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-05-30_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_5.49.29.png)
+<img width="520" alt="스크린샷 2023-05-30 오후 5 49 29" src="https://github.com/Swift-AlgorithmStudy/GaBoJaGo/assets/57654681/4ea5b40f-3333-4915-9763-e4fb4d436b2c">
 
 여기까지가 접두어 CU이므로 트라이는 노드 C - 노드 U가 형성한 chain of nodes을 반환한다. 이러한 경우의 결과로, CUT과 CUTE라는 단어가 반환된다. 트라이가 수백, 수천 단어를 포함하고 있다고 생각해보자 .. 트라이를 씀으로써 버릴 수 있는 비교 연산의 수가 개많다!!
 
-![스크린샷 2023-05-30 오후 5.53.07.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2e2ee51b-ec27-4a4c-acfb-83b2930fbad4/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-05-30_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_5.53.07.png)
+<img width="552" alt="스크린샷 2023-05-30 오후 5 53 07" src="https://github.com/Swift-AlgorithmStudy/GaBoJaGo/assets/57654681/8f13b21a-ffb6-463f-b065-348f04e01991">
 
 ## Implementation
 

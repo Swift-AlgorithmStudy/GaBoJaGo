@@ -1,5 +1,8 @@
-// https://leetcode.com/problems/intersection-of-two-arrays-ii/
-// 20ms
+/* https://leetcode.com/problems/intersection-of-two-arrays-ii/
+ * 두 집합의 교차집합을 구하는 문제
+ * 20ms
+ *
+ */
 
 class Solution {
     func intersect(_ nums1: [Int], _ nums2: [Int]) -> [Int] {

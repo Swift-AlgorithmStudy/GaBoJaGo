@@ -485,3 +485,74 @@ equal 인덱스는 증가하지 않았기 때문에, 스왑된 요소(8)는 다�
 ```
 
 이를 계속합니다.
+
+smaller, equal, larger가 어떻게 나뉘어졌는지 확인하십시오.
+
+- [low..<smaller]에 있는 요소들은 중심점보다 작습니다.
+- [smaller..<equal]에 있는 요소들은 중심점과 같습니다.
+- [larger>..high]에 있는 요소들은 중심점보다 큽니다.
+- [equal…larger]에 있는 요소들을 아직 비교되지 않았습니다.
+
+알고리즘이 어떻게 끝나는지 이해하기 위해서, 두 번째부터 마지막 단계까지를 살펴봅시다.
+
+```swift
+[0, 3, -1, 2, 5, 8, 8, 27, 1, 18, 21, 9, 12]
+                 s
+                        e
+                           l
+```
+
+여기서 27이 비교되었습니다. 이는 중심점보다 크기 때문에, 1과 스왑되고 larger 인덱스는 증가합니다.
+
+```swift
+[0, 3, -1, 2, 5, 8, 8, 1, 27, 18, 21, 9, 12]
+                 s
+                       e
+                       l
+```
+
+비록 equal이 larger와 같아졌지만, 알고리즘은 끝나지 않았습니다.
+
+현재 equal에 있는 요소는 아직 비교되지 않았습니다. 이는 중심점보다 작기 때문에 8과 스왑되고, smaller와 equal의 인덱스는 증가합니다.
+
+```swift
+[0, 3, -1, 2, 5, 1, 8, 8, 27, 18, 21, 9, 12]
+                    s
+                          e
+                       l
+```
+
+smaller와 larger는 중간 파티션의 첫 번째와 마지막 요소를 가리키고 있습니다. 이들을 반환함으로써, 세 파티션의 경계선을 표시합니다.
+
+이제 새로운 버전의 퀵 정렬인 Dutch national flag 파티셔닝을 실행할 준비가 완료되었습니다.
+
+```swift
+public func quicksortDutchFlag<T: Comparable>(_ a: inout [T],
+                                              low: Int, high: Int) {
+  if low < high {
+    let (middleFirst, middleLast) =
+      partitionDutchFlag(&a, low: low, high: high, pivotIndex: high)
+    quicksortDutchFlag(&a, low: low, high: middleFirst - 1)
+    quicksortDutchFlag(&a, low: middleLast + 1, high: high)
+  }
+}
+```
+
+재귀가 middleFirst와 middleLast 인덱스를 사용하여 재귀적으로 정렬해야할 파티션을 결정하는 것을 주목하십시오. 피벗과 동일한 값을 가진 요소들은 함께 그룹화되기 때문에 재귀적으로 정렬하는 과정에서 제외될 수 있습니다.
+
+```swift
+var list4 = [12, 0, 3, 9, 2, 21, 18, 27, 1, 5, 8, -1, 8]
+quicksortDutchFlag(&list4, low: 0, high: list4.count - 1)
+print(list4)
+```
+
+## Key points
+
+- 순수 파티셔닝은 모든 filter 함수마다 새로운 배열을 생성합니다. 매우 비효율적입니다. 
+다른 모든 전략들은 제자리에서 정렬을 진행합니다.
+- Lomuto의 파티셔닝은 마지막 요소를 중심점으로 선택합니다.
+- Hoare의 파티셔닝은 첫 번째 요소를 중심점으로 선택합니다.
+- 이상적인 중심점은 파티션 간의 요소들을 동등하게 나누는 것입니다.
+- 나쁜 중심점을 선택한다면 퀵정렬이 O(n^2)의 성능을 보일 수 있습니다.
+- 세 개의 중앙값은 첫 번째, 중간, 마지막 요소의 중앙값을 통해 중심점을 찾는 것입니다.
+- Dutch national flag 파티셔닝은 복제된 요소를 더욱 효율적으로 정리할 수 있도록하는 전략입니다.

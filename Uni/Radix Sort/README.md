@@ -84,7 +84,7 @@ extension Array where Element == Int {
 		var done = false
 		var digits = 1
 		while !done {
-			**// 두 차원 배열을 사용하여 버킷을 생성합니다.
+			// 두 차원 배열을 사용하여 버킷을 생성합니다.
 			// 10진법을 사용하기 때문에 10개의 버킷이 필요합니다.
 			var buckets: [[Int]] = .init(repeating: [], count: base)
 			// 각 숫자를 올바른 버킷에 넣습니다.
@@ -96,7 +96,7 @@ extension Array where Element == Int {
 			// digits를 다음으로 조사할 자릿수로 업데이트하고, flatMap을 사용하여 배열을 업데이트합니다.
 			// flatMap은 버킷을 배열에 비워넣는 것과 같이 두 차원 배열을 일차원 배열로 펼쳐줍니다.
 			digits *= base
-			self = buckets.flatMap { $0 }**
+			self = buckets.flatMap { $0 }
 		}
 	}
 }
@@ -113,13 +113,13 @@ extension Array where Element == Int {
 		var done = false
 		var digits = 1
 		while !done {
-			**done = true**
+			done = true
 			var buckets: [[Int]] = .init(repeating: [], count: base)
 			forEach { number in
 				let remainingPart = number / digits
-				**if remainingPart > 0 {**
-					**done = false**
-				**}**
+				if remainingPart > 0 {
+					done = false
+				}
 				let digit = remainingPart % base
 				buckets[digit].append(number)
 			}

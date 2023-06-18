@@ -14,11 +14,11 @@ var array = [88, 410, 1772, 20]
 
 기수 정렬은 다음과 같이 정수의 위치 표기에 의존합니다:
 
-![image](https://github.com/Swift-AlgorithmStudy/GaBoJaGo/assets/100195563/67b53149-b08f-4269-9f90-64766a159a48)
+<img src="https://github.com/Swift-AlgorithmStudy/GaBoJaGo/assets/100195563/67b53149-b08f-4269-9f90-64766a159a48" alt="Image" width="300">
 
 먼저, 배열은 가장 작은 자릿수인 일의 자릿수에 기반하여 버킷으로 나눠집니다.
 
-![image](https://github.com/Swift-AlgorithmStudy/GaBoJaGo/assets/100195563/d78e8641-d1bc-4406-b7b9-f09ed1a531b9)
+<img src="https://github.com/Swift-AlgorithmStudy/GaBoJaGo/assets/100195563/d78e8641-d1bc-4406-b7b9-f09ed1a531b9" alt="Image" width="300">
 
 
 이러한 버킷들은 순서대로 비워지며, 다음과 같이 부분적으로 정렬된 배열이 생성됩니다:
@@ -27,13 +27,13 @@ array = [410, 20, 1772, 88]
 
 다음으로, 십의 자릿수에 대해 이 절차를 반복합니다:
 
-![image](https://github.com/Swift-AlgorithmStudy/GaBoJaGo/assets/100195563/164b9480-1a81-4f0f-bf7e-fdaa359b8c3a)
+<img src="https://github.com/Swift-AlgorithmStudy/GaBoJaGo/assets/100195563/164b9480-1a81-4f0f-bf7e-fdaa359b8c3a" alt="Image" width="300">
 
 요소의 상대적인 순서는 이번에는 바뀌지 않았지만, 당신은 여전히 검사해야 할 숫자가 더 많습니다.
 
 고려해야 할 다음 숫자는 백의 자리 숫자입니다:
 
-![image](https://github.com/Swift-AlgorithmStudy/GaBoJaGo/assets/100195563/f81f6e6d-4732-48a0-bf58-90f43a36c983)
+<img src="https://github.com/Swift-AlgorithmStudy/GaBoJaGo/assets/100195563/f81f6e6d-4732-48a0-bf58-90f43a36c983" alt="Image" width="300">
 
 백의 자리(또는 값이 없는 다른 위치)가 없는 값의 경우, 숫자는 0으로 가정됩니다.
 
@@ -43,7 +43,7 @@ array = [20, 88, 410, 1772]
 
 마지막으로, 천의 자리 숫자를 고려해야 합니다:
 
-![image](https://github.com/Swift-AlgorithmStudy/GaBoJaGo/assets/100195563/17f0ff04-4d96-4828-aa54-f8529fb00269)
+<img src="https://github.com/Swift-AlgorithmStudy/GaBoJaGo/assets/100195563/17f0ff04-4d96-4828-aa54-f8529fb00269" alt="Image" width="300">
 
 이 버킷에서 배열을 재조립하면 최종 정렬된 배열로 이어집니다:
 

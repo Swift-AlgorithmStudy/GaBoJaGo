@@ -16,7 +16,7 @@
 
 <img width="522" alt="image" src="https://github.com/Swift-AlgorithmStudy/GaBoJaGo/assets/104834390/ab880d53-0afc-41cc-b700-e20514ded9f4">
 
-이 변환은 모든 부모 노드들를 내려가면서 올바른 자리에 도달하도록 합니다.
+이 변환은 모든 부모 노드들을 내려가면서 올바른 자리에 도달하도록 합니다.
 
 최대힙의 결과는 다음과 같습니다.
 

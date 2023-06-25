@@ -1,28 +1,30 @@
+# Graphs
+
 소셜 네트워크는 전 세계의 저렴한 항공편을 예약하는 것과 어떤 공통점이 있을까? 이 두 실제 모델을 **그래프**로 나타낼 수 있다!
 
 그래프는 물체 간의 관계를 캡쳐하는 데이터 구조이다. 그것은 가장자리와 연결된 정점들로 구성되어 있다.
 
 아래 그래프의 원은 정점을 나타내며, 가장자리는 정점들을 연결하는 선이다.
 
-![스크린샷 2023-06-22 오후 10.51.33.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2a16b20d-69b0-4b96-9f13-6a7cfb06c186/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-06-22_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_10.51.33.png)
+<img width="324" alt="스크린샷 2023-06-22 오후 10 51 33" src="https://github.com/Swift-AlgorithmStudy/GaBoJaGo/assets/57654681/4bfbba89-316c-43f1-a57c-18686765d707">
 
 ## Weighted graphs
 
-가중 그래프에서, 모든 가장자리에는 이 가장자리를 사용하는 비용을 나타내는 가중치가 있다. 이 가중치를 사용하면 두 정점 사이에서 가장 저렴하거나 가장 짧은 경로를 선택할 수 있습니다.
+가중 그래프에서, 모든 가장자리에는 이 가장자리를 사용하는 비용을 나타내는 가중치가 있다. 이 가중치를 사용하면 두 정점 사이에서 가장 저렴하거나 가장 짧은 경로를 선택할 수 있다.
 
 항공 산업을 예로 들어 다양한 비행 경로를 가진 네트워크를 생각해 보자:
 
-![스크린샷 2023-06-22 오후 10.53.02.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/796eb374-4157-484d-a87f-e958aa6f9f93/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-06-22_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_10.53.02.png)
+<img width="457" alt="스크린샷 2023-06-22 오후 10 53 02" src="https://github.com/Swift-AlgorithmStudy/GaBoJaGo/assets/57654681/3b9b1f6c-c0c3-44ad-ba1e-df1c5a9cf576">
 
 이 예에서, **정점은 주나 국가**를 나타내는 반면, **가장자리는 한 곳에서 다른 곳으로 가는 경로**를 나타낸다. 각 가장자리와 관련된 가중치는 그 두 지점 사이의 항공료를 나타낸다. 이 네트워크를 사용하면, 예산을 고려한 모든 디지털 노마드들을 위해 샌프란시스코에서 싱가포르까지 가장 저렴한 항공편을 결정할 수 있다!
 
 ### Directed graphs
 
-가장자리에 가중치를 할당할 뿐만 아니라, 그래프는 방향을 가질 수도 있습니다.
+가장자리에 가중치를 할당할 뿐만 아니라, 그래프는 방향을 가질 수도 있다.
 
 방향 그래프는 가장자리가 한 방향으로만 이동할 수 있기 때문에 더 제한적이다. 아래 다이어그램은 방향 그래프를 나타낸다.
 
-![스크린샷 2023-06-22 오후 10.58.17.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/5b6e6284-7dd3-4790-82ef-fdfd053b077e/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-06-22_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_10.58.17.png)
+<img width="457" alt="스크린샷 2023-06-22 오후 10 58 17" src="https://github.com/Swift-AlgorithmStudy/GaBoJaGo/assets/57654681/8511186a-9769-43b5-a49d-eebde1be6344">
 
 이 다이어그램에서 많은 것을 알 수 있다:
 
@@ -40,8 +42,8 @@
 - 연결된 두 정점은 앞뒤로 가는 엣지를 가지고 있다.
 - 엣지의 가중치는 양방향에 적용된다.
     
-    ![스크린샷 2023-06-22 오후 10.59.16.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1bc57a7c-7f11-40eb-a953-18b747d764fc/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-06-22_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_10.59.16.png)
-    
+    <img width="453" alt="스크린샷 2023-06-22 오후 10 59 16" src="https://github.com/Swift-AlgorithmStudy/GaBoJaGo/assets/57654681/0db16c17-2bd6-4cde-b597-22926a0ec233">
+
 
 ## Common operations
 
@@ -87,13 +89,13 @@ public protocol Graph {
 다음 섹션에서, 두 가지 방법으로 이 프로토콜을 구현해보자:
 
 - 인접 목록 사용하기
-- 인접 행렬 사용하.
+- 인접 행렬 사용하기
 
-그렇게 하기 전에, 정점과 엣지를 나타내기 위해 먼저 유형을 구축해야 합니다.
+그렇게 하기 전에, 정점과 엣지를 나타내기 위해 먼저 유형을 구축해야 한다.
 
 ## Defining a vertex
 
-![스크린샷 2023-06-22 오후 11.06.07.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b7e44169-e489-45eb-8146-6277e563b2bd/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-06-22_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_11.06.07.png)
+<img width="455" alt="스크린샷 2023-06-22 오후 11 06 07" src="https://github.com/Swift-AlgorithmStudy/GaBoJaGo/assets/57654681/b0588dac-9a60-4398-8860-085fd15cea76">
 
 Vertex.swift라는 새 파일을 만들고 파일 안에 다음을 추가:
 
@@ -131,7 +133,7 @@ extension Vertex: CustomStringConvertible {
 
 두 정점을 연결하려면, 그들 사이에 엣지가 있어야 한다!
 
-![스크린샷 2023-06-22 오후 11.08.48.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/345c321e-8922-4314-8241-bd750addd6f6/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-06-22_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_11.08.48.png)
+<img width="456" alt="스크린샷 2023-06-22 오후 11 08 48" src="https://github.com/Swift-AlgorithmStudy/GaBoJaGo/assets/57654681/25706eae-10b3-4a4a-be27-837c363ec8ec">
 
 Edge.swift라는 새 파일을 만들고 파일 안에 다음을 추가:
 
@@ -148,17 +150,17 @@ public struct Edge<T> {
 
 ## Adjacency list
 
-배우게 될 첫 번째 그래프 구현은 인접 목록을 사용한다. 그래프의 모든 정점에 대해, 그래프는 나가는 엣지 목록을 저장합니다.
+배우게 될 첫 번째 그래프 구현은 인접 목록을 사용한다. 그래프의 모든 정점에 대해, 그래프는 나가는 엣지 목록을 저장한다.
 
 다음 네트워크를 예로 들어 보자:
 
-![스크린샷 2023-06-22 오후 11.15.52.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/955e4033-c62d-4e9c-9a83-03abc4f39c82/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-06-22_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_11.15.52.png)
+<img width="457" alt="스크린샷 2023-06-22 오후 11 15 52" src="https://github.com/Swift-AlgorithmStudy/GaBoJaGo/assets/57654681/6eeadf59-a7f3-4291-9629-60b854a4439a">
 
 아래의 인접 목록은 위에 묘사된 항공편 네트워크를 설명한다:
 
-![스크린샷 2023-06-22 오후 11.16.11.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/9c4a1071-1a3d-4a89-a870-a6012c6661b4/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-06-22_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_11.16.11.png)
+<img width="522" alt="스크린샷 2023-06-22 오후 11 16 11" src="https://github.com/Swift-AlgorithmStudy/GaBoJaGo/assets/57654681/09f0697c-0ea9-4e0b-b1c9-eea6ad096cce">
 
-이 인접 목록에서 배울 수 있는 것이 많이 있다:
+이 인접 목록에서 많은 것을 알 수 있다:
 
 1. 싱가포르의 정점은 두 개의 나가는 가장자리를 가지고 있다. 싱가포르에서 도쿄와 홍콩으로 가는 비행기가 있다.
 2. 디트로이트는 나가는 교통량이 가장 적다.
@@ -203,7 +205,7 @@ public func createVertex(data: T) -> Vertex<T> {
 
 방향이 있는 그래프와 방향이 없는 그래프가 있다는 것을 기억하기!
 
-![스크린샷 2023-06-22 오후 11.23.13.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/4c1da0b9-145c-46af-b23d-229bcf416239/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-06-22_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_11.23.13.png)
+<img width="488" alt="스크린샷 2023-06-22 오후 11 23 13" src="https://github.com/Swift-AlgorithmStudy/GaBoJaGo/assets/57654681/f04bb4a0-7e34-4ab6-8380-809793272a91">
 
 addDirectedEdge 요구 사항을 구현하는 것으로 시작해보자. 다음 방법을 추가:
 
@@ -222,7 +224,7 @@ public func addDirectedEdge(from source: Vertex<T>,
 
 ### Creating an undirected edge
 
-방금 두 정점 사이에 지시된 엣지를 추가하는 방법을 만들었다. 두 정점 사이에 방향이 없는엣지를 어떻게 만들 수 있을까요?
+방금 두 정점 사이에 지시된 엣지를 추가하는 방법을 만들었다. 두 정점 사이에 방향이 없는엣지를 어떻게 만들 수 있을까?
 
 무방향 그래프는 양방향 그래프로 볼 수 있다는 것을 기억하자. 무방향 그래프의 모든 엣지는 양방향으로 횡단할 수 있다. 이것이 addDirectedEdge 위에 addUndirectedEdge를 구현하는 이유이다. 이 구현은 재사용할 수 있기 때문에, 그래프에 프로토콜 확장으로 추가할 것이다.
 
@@ -257,7 +259,7 @@ public func add(_ edge: EdgeType, from source: Vertex<Element>,
 }
 ```
 
-추가 방법은 방향 또는 비방향 가장자리를 만드는 편리한 방법입니다. 프로토콜이 매우 강력해질 수 있다!
+추가 방법은 방향 또는 비방향 가장자리를 만드는 편리한 방법이다. 프로토콜이 매우 강력해질 수 있다!
 
 그래프 프로토콜을 채택한 사람은 누구나 addUndirectedEdge를 얻고 무료로 추가하기 위해 addDirectedEdge를 구현하기만 하면 된다!
 
@@ -277,7 +279,7 @@ public func edges(from source: Vertex<T>) -> [Edge<T>] {
 
 싱가포르에서 도쿄로 가는 비행기는 얼마인가?
 
-![스크린샷 2023-06-22 오후 11.35.17.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/885aa822-0dae-4514-845b-55445c0cdae4/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-06-22_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_11.35.17.png)
+<img width="652" alt="스크린샷 2023-06-22 오후 11 35 17" src="https://github.com/Swift-AlgorithmStudy/GaBoJaGo/assets/57654681/259ef535-73cc-45fe-83b2-c10d38d96ebd">
 
 가장자리 바로 뒤에 다음을 추가`(from:)`:
 
@@ -290,7 +292,7 @@ public func weight(from source: Vertex<T>,
 }
 ```
 
-여기서, 출발지에서 목적지까지 첫 번째 엣지를 찾을 수 있습니다; 만약 있다면, 당신은 그 가중치를 돌려준다.
+여기서, 출발지에서 목적지까지 첫 번째 엣지를 찾을 수 있다; 만약 있다면, 당신은 그 가중치를 돌려준다.
 
 ### Visualizing the adjacency list
 
@@ -329,7 +331,7 @@ extension AdjacencyList: CustomStringConvertible {
 
 항공편 예시로 돌아가서 가격이 가중치인 항공편 네트워크를 구축해 보장.
 
-![스크린샷 2023-06-22 오후 11.38.07.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/d87d6d68-ac10-430d-bfb6-fa8c6c750f8f/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-06-22_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_11.38.07.png)
+<img width="649" alt="스크린샷 2023-06-22 오후 11 38 07" src="https://github.com/Swift-AlgorithmStudy/GaBoJaGo/assets/57654681/904f3d15-3379-4f8c-a7e1-0f5eb3ca96d2">
 
 플레이그라운드에서 다음 코드를 추가해보자:
 
@@ -402,13 +404,13 @@ for edge in graph.edges(from: sanFrancisco) {
 
 아래는 다른 장소로 여행하는 비행 네트워크를 묘사한 방향 그래프의 예시이다. 무게는 항공료 비용을 나타낸다.
 
-![스크린샷 2023-06-22 오후 11.51.34.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f1c20152-7add-41ce-8afc-325e7a43768c/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-06-22_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_11.51.34.png)
+<img width="585" alt="스크린샷 2023-06-22 오후 11 51 34" src="https://github.com/Swift-AlgorithmStudy/GaBoJaGo/assets/57654681/56cdbe26-a543-4564-92ce-e0b6ef04c404">
 
 다음 인접 매트릭스는 위에 묘사된 항공편의 네트워크를 설명한다.
 
 존재하지 않는 가장자리의 무게는 0이다.
 
-![스크린샷 2023-06-22 오후 11.53.34.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/0811b306-7325-426d-bc1e-40131042a92a/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-06-22_%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE_11.53.34.png)
+<img width="652" alt="스크린샷 2023-06-22 오후 11 53 34" src="https://github.com/Swift-AlgorithmStudy/GaBoJaGo/assets/57654681/46870b2a-a868-4d5e-8007-cd996fab877b">
 
 인접 목록에 비해, 이 매트릭스는 읽기가 조금 더 어렵다. 왼쪽의 정점 배열을 사용하면 행렬에서 많은 것을 배울 수 있다. 예를 들어:
 
@@ -463,13 +465,13 @@ public func createVertex(data: T) -> Vertex<T> {
 
 1. 배열에 새 정점을 추가한다.
 2. 현재 정점 중 어느 것도 새로운 정점에 엣지가 있지 않기 때문에 행렬의 모든 행에 0 가중치를 추가한다.
+
+    <img width="651" alt="스크린샷 2023-06-23 오전 12 20 33" src="https://github.com/Swift-AlgorithmStudy/GaBoJaGo/assets/57654681/b1657994-7e4e-4f4c-8719-9a3392883c6b">
+
+3. 행렬에 새 행을 추가하라. 이 행은 새로운 정점의 나가는(outgoing) 가장자리를 유지한다.
     
-    ![스크린샷 2023-06-23 오전 12.20.33.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/fd7737a1-0360-451f-b726-6bfd24959f86/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-06-23_%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB_12.20.33.png)
-    
-    1. 행렬에 새 행을 추가하세요. 이 행은 새로운 정점의 나가는(outgoing) 가장자리를 유지한다.
-    
-    ![스크린샷 2023-06-23 오전 12.20.47.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f5c1b3ed-4fff-4859-b9bc-4dd20bfb6fd1/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-06-23_%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB_12.20.47.png)
-    
+    <img width="650" alt="스크린샷 2023-06-23 오전 12 20 47" src="https://github.com/Swift-AlgorithmStudy/GaBoJaGo/assets/57654681/93b6b4eb-13cb-4ddf-8532-46c8ae6964bb">
+
     ### Creating edges
     
     가장자리를 만드는 것은 매트릭스를 채우는 것만큼 간단하다. 다음 방법을 추가:
@@ -518,7 +520,7 @@ public func createVertex(data: T) -> Vertex<T> {
     
     ### Visualize an adjacency matrix
     
-    마지막으로, 그래프에 대한 멋지고 읽기 쉬운 설명을 출력할 수 있도록 다음 확장자를 추가하세요:
+    마지막으로, 그래프에 대한 멋지고 읽기 쉬운 설명을 출력할 수 있도록 다음 확장자를 추가:
     
     ```swift
     extension AdjacencyMatrix: CustomStringConvertible {
@@ -555,11 +557,11 @@ public func createVertex(data: T) -> Vertex<T> {
     
     ### Building a network
     
-    당신은 AdjacencyList에서 같은 예를 재사용할 것이다:
-    
-    ![스크린샷 2023-06-23 오전 12.43.07.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/c480b095-9392-493e-8811-61d60e4fc14f/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-06-23_%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB_12.43.07.png)
-    
-    메인 놀이터 페이지로 가서 바꿔, 이거를:
+    AdjacencyList에서 같은 예 재사용할거임:
+   
+    <img width="652" alt="스크린샷 2023-06-23 오전 12 43 07" src="https://github.com/Swift-AlgorithmStudy/GaBoJaGo/assets/57654681/767f5803-e535-4a44-8408-93d08522e265">
+
+    코드 가서 바꿔, 이거를:
     
     ```swift
     let graph = AdjacencyList<String>()
@@ -606,17 +608,17 @@ public func createVertex(data: T) -> Vertex<T> {
     
     이 차트는 인접 목록과 인접 행렬로 표시된 그래프의 다양한 작업 비용을 요약한다.
     
-    ![스크린샷 2023-06-23 오전 12.48.33.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/1bc0cadf-db34-4383-b15d-d57460bb5499/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA_2023-06-23_%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB_12.48.33.png)
-    
+    <img width="586" alt="스크린샷 2023-06-23 오전 12 48 33" src="https://github.com/Swift-AlgorithmStudy/GaBoJaGo/assets/57654681/a11f89fd-3eb5-40d7-994b-8801ef71eef0">
+
     V는 정점을 나타내고, E는 모서리를 나타낸다.
     
     인접 목록은 인접 행렬보다 저장 공간을 덜 차지한다. 인접 목록은 단순히 필요한 정점과 엣지의 수를 저장한다. 인접 행렬에 관해서는, 행과 열의 수가 정점의 수와 같다는 것을 기억하라. 이것은 O(V²)의 이차 공간 복잡성을 설명한다.
     
     정점을 추가하는 것은 인접 목록에서 효율적이다: 정점을 만들고 사전에서 키-값 쌍을 설정하기만 하면 된다. 그것은 O(1)로 생각된다. 인접 행렬에 정점을 추가할 때, 모든 행에 열을 추가하고 새 정점에 대한 새 행을 만들어야 한다. 이것은 적어도 O(V), 그리고 만약 매트릭스를 인접한 메모리 블록으로 나타내기로 선택한다면, 그것은 O(V²)가 될 수 있다.
     
-    엣지를 추가하는 것은 둘 다 일정한 시간이기 때문에 두 데이터 구조 모두에서 효율적이다. 인접 목록은 나가는 엣지 배열에 추가됩니다. 인접 행렬은 단순히 2차원 배열의 값을 설정한다.
+    엣지를 추가하는 것은 둘 다 일정한 시간이기 때문에 두 데이터 구조 모두에서 효율적이다. 인접 목록은 나가는 엣지 배열에 추가된다. 인접 행렬은 단순히 2차원 배열의 값을 설정한다.
     
-    인접 목록은 특정 엣지나 무게를 찾으려고 할 때 잃습니다. 인접 목록에서 엣지를 찾으려면, 나가는 엣지 리스트를 얻고 일치하는 목적지를 찾기 위해 모든 가장자리를 반복해야 한다. 이것은 O(V) 시간에 일어난다. 인접 행렬을 사용하면 가장자리나 가중치를 찾는 것은 2차원 배열에서 값을 검색하기 위한 일정한 시간 접근이다.
+    인접 목록은 특정 엣지나 무게를 찾으려고 할 때 잃는다. 인접 목록에서 엣지를 찾으려면, 나가는 엣지 리스트를 얻고 일치하는 목적지를 찾기 위해 모든 가장자리를 반복해야 한다. 이는 O(V)의 시간동안 일어난다. 인접 행렬을 사용하면 가장자리나 가중치를 찾는 것은 2차원 배열에서 값을 검색하기 위한 일정한 시간 접근이다.
     
     그래프를 구성하려면 어떤 데이터 구조를 선택해야 할까?
     

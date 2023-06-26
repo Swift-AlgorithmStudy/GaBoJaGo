@@ -26,7 +26,7 @@
 
 </br>
 
-<imgwidth="60%" height="60%" alt="image" src="https://github.com/GYURI-PARK/Algorithm/assets/93391058/867e6ec2-5063-4ea2-be1f-79298e50aee8">
+<img width="60%" height="60%" alt="image" src="https://github.com/GYURI-PARK/Algorithm/assets/93391058/867e6ec2-5063-4ea2-be1f-79298e50aee8">
 
 </br>
 

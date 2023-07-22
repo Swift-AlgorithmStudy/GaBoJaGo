@@ -1,0 +1,41 @@
+import Foundation
+
+func shortestPath(_ D: Int, _ shortcuts: [(Int, Int, Int)]) -> Int {
+    let max = 10001
+    var distance = [Int](repeating: max, count: D+1)
+    distance[0] = 0
+    
+    for i in 0...D {
+        if i > 0 {
+            distance[i] = min(distance[i], distance[i - 1] + 1)  //현재 위치에서 바로 다음의 위치의 값은 1
+        }
+        for shortcut in shortcuts {
+            let start = shortcut.0
+            let end = shortcut.1
+            let cost = shortcut.2
+            
+            //start == i : 현재 위치(i)가 지름길의 출발점(start)과 일치하는지 확인
+            //end <= D : 지름길의 도착점(end)이 도착점(D)보다 작거나 같은지 확인
+            //distance[end] > distance[start] + cost : 현재까지의 최단거리보다 해당 지름길을 통해도착지점에 도달하는 비용이 더 작은지
+            if start == i && end <= D && distance[end] > distance[start] + cost {
+                distance[end] = distance[start] + cost
+            }
+        }
+    }
+    return distance[D]
+}
+
+let input = readLine()!.split(separator: " ").map { Int($0)! }
+
+let (N, D) = (input[0], input[1])
+
+var shortcuts = [(Int, Int, Int)]()
+
+for _ in 0..<N {
+    let shortcutInput = readLine()!.split(separator: " ").map { Int($0)! }
+    shortcuts.append((shortcutInput[0], shortcutInput[1], shortcutInput[2]))
+}
+
+let result = shortestPath(D, shortcuts)
+
+print(result)

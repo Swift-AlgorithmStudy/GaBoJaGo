@@ -1,0 +1,134 @@
+import Foundation
+
+let dx = [-1, 1, 0, 0]
+let dy = [0, 0, -1, 1]
+var testCase = 1
+
+func dijkstra(_ cave: [[Int]]) -> Int {
+    let n = cave.count
+    var distance = [[Int]](repeating: [Int](repeating: Int.max, count: n), count: n)
+    distance[0][0] = cave[0][0]
+    
+    var queue = PriorityQueue<(Int, Int, Int)> { $0.2 < $1.2 }  // (row, col, cost)
+    queue.enqueue((0, 0, cave[0][0]))
+    
+    while !queue.isEmpty {
+        let (curRow, curCol, curCost) = queue.dequeue()!
+        
+        // 이미 처리한 정점인 경우 스킵
+        if curCost > distance[curRow][curCol] {
+            continue
+        }
+        
+        for i in 0..<4 {
+            let newRow = curRow + dx[i]
+            let newCol = curCol + dy[i]
+            
+            if newRow >= 0 && newRow < n && newCol >= 0 && newCol < n {
+                let newCost = curCost + cave[newRow][newCol]
+                
+                if newCost < distance[newRow][newCol] {
+                    distance[newRow][newCol] = newCost
+                    queue.enqueue((newRow, newCol, newCost))
+                }
+            }
+        }
+    }
+    
+    return distance[n-1][n-1]
+}
+
+while true {
+    let N = Int(readLine()!)!
+    
+    if N == 0 {
+        break
+    }
+    
+    var cave = [[Int]]()
+    
+    for _ in 0..<N {
+        let rupees = readLine()!.split(separator: " ").map { Int($0)! }
+        cave.append(rupees)
+    }
+    
+    let result = dijkstra(cave)
+    print("Problem \(testCase): \(result)")
+    
+    testCase += 1
+}
+
+// 우선순위 큐(Priority Queue) 구현체
+struct PriorityQueue<Element> {
+    private var elements: [Element] = []
+    private let priorityFunction: (Element, Element) -> Bool
+    
+    public init(priorityFunction: @escaping (Element, Element) -> Bool) {
+        self.priorityFunction = priorityFunction
+    }
+    
+    public var isEmpty: Bool {
+        return elements.isEmpty
+    }
+    
+    public var count: Int {
+        return elements.count
+    }
+    
+    public mutating func enqueue(_ element: Element) {
+        elements.append(element)
+        siftUp(from: elements.count - 1)
+    }
+    
+    public mutating func dequeue() -> Element? {
+        guard !isEmpty else {
+            return nil
+        }
+        
+        if elements.count == 1 {
+            return elements.removeLast()
+        } else {
+            let first = elements[0]
+            elements[0] = elements.removeLast()
+            siftDown(from: 0)
+            return first
+        }
+    }
+    
+    private mutating func siftUp(from index: Int) {
+        var childIndex = index
+        var parentIndex = (childIndex - 1) / 2
+        
+        while childIndex > 0 && !priorityFunction(elements[parentIndex], elements[childIndex]) {
+            elements.swapAt(parentIndex, childIndex)
+            childIndex = parentIndex
+            parentIndex = (childIndex - 1) / 2
+        }
+    }
+    
+    private mutating func siftDown(from index: Int) {
+        let count = elements.count
+        var parentIndex = index
+        
+        while true {
+            let leftChildIndex = 2 * parentIndex + 1
+            let rightChildIndex = 2 * parentIndex + 2
+            var candidateIndex = parentIndex
+            
+            if leftChildIndex < count && priorityFunction(elements[leftChildIndex], elements[candidateIndex]) {
+                candidateIndex = leftChildIndex
+            }
+            
+            if rightChildIndex < count && priorityFunction(elements[rightChildIndex], elements[candidateIndex]) {
+                candidateIndex = rightChildIndex
+            }
+            
+            if candidateIndex == parentIndex {
+                return
+            }
+            
+            elements.swapAt(parentIndex, candidateIndex)
+            parentIndex = candidateIndex
+        }
+    }
+}

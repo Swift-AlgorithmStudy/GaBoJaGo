@@ -1,3 +1,11 @@
+/***
+1. input들 받기
+2. graph를 정점(vertex)와 가중치(cost)가 있는 배열로 정의한다.
+3. result 배열에는 파티를 개최하는 각 마을에서부터 학생들 간의 최단거리를 구한다.
+4. 파티를 개최하는 마을로 가는(distanceToParty) 배열을 구한다.
+5. 가장 오래 걸린 시간을 구해야하기 때문에 max값을 통해 answer를 구한다.
+
+*/
 import Foundation
 
 let INF = Int(1e9) // 무한을 의미하는 큰 값

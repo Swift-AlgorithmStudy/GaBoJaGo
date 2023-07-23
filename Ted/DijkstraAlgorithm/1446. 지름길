@@ -1,3 +1,17 @@
+/***
+1. 배열(shortcuts)에 지름길 시작 위치, 도착 위치, 길이를 넣는다.
+2. 다익스트라 메소드를 실행한다.
+3. 최대값이 10000이기 때문에 10001을 max로 설정하고, 거리에 대한 배열(distance)을 최대값으로 설정해놓는다.
+4. 시작점을 0으로 지정하고 시작한다.
+5. distance의 값과 한 칸을 갔을 떄 1이 소모되는 값을 비교해서 최소값을 대입한다.
+6. 만약
+//start == i : 현재 위치(i)가 지름길의 출발점(start)과 일치하는지 확인
+//end <= D : 지름길의 도착점(end)이 도착점(D)보다 작거나 같은지 확인
+//distance[end] > distance[start] + cost : 현재까지의 최단거리보다 해당 지름길을 통해도착지점에 도달하는 비용이 더 작은지
+를 비교한 뒤, 조건을 만족하면 거리의 도착점(distance[end])에 distance[start] + cost 값을 대입하낟.
+7. 위 식을 순환하며 최소거리를 구하고, 원하는 위치의 최소거리를 반환한다.
+*/
+
 import Foundation
 
 func shortestPath(_ D: Int, _ shortcuts: [(Int, Int, Int)]) -> Int {

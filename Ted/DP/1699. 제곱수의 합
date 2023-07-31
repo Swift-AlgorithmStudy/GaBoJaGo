@@ -1,0 +1,170 @@
+/***
+1. input들 받기
+2. graph를 정점(vertex)와 가중치(cost)가 있는 배열로 정의한다.
+3. result 배열에는 파티를 개최하는 각 마을에서부터 학생들 간의 최단거리를 구한다.
+4. 파티를 개최하는 마을로 가는(distanceToParty) 배열을 구한다.
+5. 가장 오래 걸린 시간을 구해야하기 때문에 max값을 통해 answer를 구한다.
+
+*/
+import Foundation
+
+let INF = Int(1e9) // 무한을 의미하는 큰 값
+
+let input = readLine()!.split(separator: " ").map{ Int($0)! }
+let N = input[0] // 학생 수
+let M = input[1] // 도로 수
+let X = input[2] // 파티가 열리는 마을 번호
+
+var graph = Array(repeating: [(vertex: Int, cost: Int)](), count: N+1)
+
+// 그래프 정보 입력
+for _ in 0..<M {
+    let road = readLine()!.split(separator: " ").map{ Int($0)! }
+    let a = road[0]
+    let b = road[1]
+    let cost = road[2]
+    graph[a].append((vertex: b, cost: cost))
+}
+
+func dijkstra(start: Int, distance: inout [Int]) {
+    var heap = BinaryHeap<(vertex: Int, cost: Int)>(sort: { $0.cost < $1.cost })
+    heap.enqueue((vertex: start, cost: 0))
+    distance[start] = 0
+    
+    while !heap.isEmpty {
+        let current = heap.dequeue()!
+        let currentVertex = current.vertex
+        let currentCost = current.cost
+        
+        if distance[currentVertex] < currentCost {
+            continue
+        }
+        
+        for i in 0..<graph[currentVertex].count {
+            let next = graph[currentVertex][i]
+            let nextVertex = next.vertex
+            let nextCost = currentCost + next.cost
+            
+            if nextCost < distance[nextVertex] {
+                distance[nextVertex] = nextCost
+                heap.enqueue((vertex: nextVertex, cost: nextCost))
+            }
+        }
+    }
+}
+
+var result = [Int](repeating: 0, count: N+1)
+
+// 파티를 개최하는 마을로부터 모든 학생까지의 최단 거리 구하기
+for i in 1...N {
+    var distance = [Int](repeating: INF, count: N+1)
+    dijkstra(start: i, distance: &distance)
+    result[i] += distance[X]
+}
+
+// 각 학생이 파티를 개최하는 마을로 가는 최단 거리 구하기
+var distanceToParty = [Int](repeating: INF, count: N+1)
+dijkstra(start: X, distance: &distanceToParty)
+
+// 결과 출력
+var answer = 0
+for i in 1...N {
+    result[i] += distanceToParty[i]
+    answer = max(answer, result[i])
+}
+
+print(answer)
+
+
+struct BinaryHeap<Element> {
+    var elements: [Element]
+    let sort: (Element, Element) -> Bool
+    
+    init(sort: @escaping (Element, Element) -> Bool, elements: [Element] = []) {
+        self.sort = sort
+        self.elements = elements
+        
+        if !elements.isEmpty {
+            for i in stride(from: elements.count / 2 - 1, through: 0, by: -1) {
+                sink(from: i)
+            }
+        }
+    }
+    
+    var isEmpty: Bool {
+        return elements.isEmpty
+    }
+    
+    var count: Int {
+        return elements.count
+    }
+    
+    func peek() -> Element? {
+        return elements.first
+    }
+    
+    func leftChildIndex(ofParentAt index: Int) -> Int {
+        return 2 * index + 1
+    }
+    
+    func rightChildIndex(ofParentAt index: Int) -> Int {
+        return 2 * index + 2
+    }
+    
+    func parentIndex(ofChildAt index: Int) -> Int {
+        return (index - 1) / 2
+    }
+    
+    mutating func enqueue(_ element: Element) {
+        elements.append(element)
+        swim(from: elements.count - 1)
+    }
+    
+    mutating func dequeue() -> Element? {
+        guard !isEmpty else {
+            return nil
+        }
+        
+        elements.swapAt(0, elements.count - 1)
+        let dequeued = elements.removeLast()
+        sink(from: 0)
+        return dequeued
+    }
+    
+    mutating func swim(from index: Int) {
+        var childIndex = index
+        var parentIndex = self.parentIndex(ofChildAt: childIndex)
+        
+        while childIndex > 0 && sort(elements[childIndex], elements[parentIndex]) {
+            elements.swapAt(childIndex, parentIndex)
+            childIndex = parentIndex
+            parentIndex = self.parentIndex(ofChildAt: childIndex)
+        }
+    }
+    
+    mutating func sink(from index: Int) {
+        var parentIndex = index
+        
+        while true {
+            let leftChildIndex = self.leftChildIndex(ofParentAt: parentIndex)
+            let rightChildIndex = leftChildIndex + 1
+            
+            var candidateIndex = parentIndex
+            
+            if leftChildIndex < elements.count && sort(elements[leftChildIndex], elements[candidateIndex]) {
+                candidateIndex = leftChildIndex
+            }
+            
+            if rightChildIndex < elements.count && sort(elements[rightChildIndex], elements[candidateIndex]) {
+                candidateIndex = rightChildIndex
+            }
+            
+            if candidateIndex == parentIndex {
+                return
+            }
+            
+            elements.swapAt(parentIndex, candidateIndex)
+            parentIndex = candidateIndex
+        }
+    }
+}

@@ -1,55 +1,19 @@
 import Foundation
 
-/***
-1. 입력을 받는다.(n, m)
-2. 최단 거리를 저장하기 위한 배열(dist)과 인접 리스트를 표현하기 위한 배열(map)을 선언하여, 각 정점에서 연결된 간선의 목록을 저장한다.
-3. 간선에 대한 정보를 받는다. u와 v는 간선의 양 끝점이고, cost는 간선의 가중치이다.
-4. map을 가중치 순으로 정렬하여 가중치가 작은 순서로 탐색할 수 있도록 한다.
-5. 시작 정점의 최단 거리를 0으로 초기화한다.
-6. q는 현재까지 탐색한 정점의 목록을 저장하는 큐를 선언한다.
-7. 큐에서 정점을 탐색하면서 해당 정점과 연결된 간선을 탐색한다.
-8. 만약 다음 정점으로 가는 비용이 더 적을 경우, 최단 거리를 갱신하고 큐에 다음 정점을 추가한다.
-9. 도착 정점 v까지의 최단 거리를 출력한다.
-*/
+var t = Array(repeating: 0, count: 36)
+t[0] = 1
+t[1] = 1
+t[2] = 2
+t[3] = 5
 
 let n = Int(readLine()!)!
-let m = Int(readLine()!)!
-var dist = Array(repeating: Int.max, count: n)
-var map = Array(repeating: [(v:Int, cost:Int)](), count: n)
 
-for _ in 0..<m{
-    let line = readLine()!.split(separator: " ").map{Int($0)!}
-
-    //배열 밀려서 -1 추가
-    let u = line[0]-1
-    let v = line[1]-1
-    let cost = line[2]
-    map[u].append((v,cost))
-}
-
-for i in 0..<n{
-    map[i].sort(by: { $0.cost<$1.cost })
-}
-
-let uv = readLine()!.split(separator: " ").map{Int($0)!-1}
-let u = uv[0]
-let v = uv[1]
-dist[u] = 0
-
-var q = [(u)]
-var idx = 0
-while idx<q.count{
-    let curr = q[idx]
-    let cost = dist[curr]
-    
-    for info in map[curr]{
-        let next = info.v
-        let fee = info.cost
-        if dist[next] > cost+fee{
-            dist[next] = cost+fee
-            q.append((next))
+if n > 3 {
+    for i in 4..<n+1 {
+        for j in 0..<i {
+            t[i] += t[j] * t[i-j-1]
         }
     }
-    idx += 1
 }
-print(dist[v])
+
+print(t[n])

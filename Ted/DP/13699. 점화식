@@ -1,5 +1,10 @@
 import Foundation
 
+/***
+1. n은 개수가 3개 보다 많을 떄 적용하기 위해서 if문을 사용한다.
+2. n = 4일 때, t(0) * t(3) ... t(3) * t(0)까지 더해야 하기 때문에 t[j] * t[i-j-1]를 더한다.
+*/
+
 var t = Array(repeating: 0, count: 36)
 t[0] = 1
 t[1] = 1

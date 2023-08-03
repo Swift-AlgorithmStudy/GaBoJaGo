@@ -1,148 +1,21 @@
-/***
-1. 상하좌우를 움직일 수 있도록 dx, dy를 설정한다.
-2. N이 0이라면 결과들을 반환한다.
-3. 그래프의 값들을 cave에 추가한다.
-4. 다익스트라 메소드를 실행한다.
-5. 거리를 확인할 수 있는 배열(distance)을 생성한다.
-6. 우선순위 큐를 구현하고 cost의 오름차순을 기준으로 정렬한다.
-7. 큐에 시작점을 대입한다.(0, 0)
-8. 큐가 비어있을 때까지 dequeue한다.
-9. 상하좌우를 확인하면서 최단거리를 확인한다.
-10. 최단거리를 출력한다.
-
-*/
-
 import Foundation
 
-let dx = [-1, 1, 0, 0]
-let dy = [0, 0, -1, 1]
-var testCase = 1
+/***
+1. n과 k를 입력받는다.
+2. i는 모든 인덱스를 순환하는 것이다.
+3. j를 통해 문장 당 i만큼의 수를 받을 수 있도록 한다,
+4. 윗 줄에서 오른쪽에 있는 수(pascal[i-1][j-1]와 그 옆에 있는 수(pascal[i-1][j]가 해당 수이기 때문에 더해준다.
+*/
 
-func dijkstra(_ cave: [[Int]]) -> Int {
-    let n = cave.count
-    var distance = [[Int]](repeating: [Int](repeating: Int.max, count: n), count: n)
-    distance[0][0] = cave[0][0]
-    
-    var queue = PriorityQueue<(Int, Int, Int)> { $0.2 < $1.2 }  // (row, col, cost)
-    queue.enqueue((0, 0, cave[0][0]))
-    
-    while !queue.isEmpty {
-        let (curRow, curCol, curCost) = queue.dequeue()!
-        
-        // 이미 처리한 정점인 경우 스킵
-        if curCost > distance[curRow][curCol] {
-            continue
-        }
-        
-        for i in 0..<4 {
-            let newRow = curRow + dx[i]
-            let newCol = curCol + dy[i]
-            
-            if newRow >= 0 && newRow < n && newCol >= 0 && newCol < n {
-                let newCost = curCost + cave[newRow][newCol]
-                
-                if newCost < distance[newRow][newCol] {
-                    distance[newRow][newCol] = newCost
-                    queue.enqueue((newRow, newCol, newCost))
-                }
-            }
-        }
+let nk = readLine()!.split(separator: " ").map { Int($0)! }
+let (n, k) = (nk[0], nk[1])
+
+var pascal = Array(repeating: Array(repeating: 1, count: 31), count: 31)
+
+for i in 2...30 {
+    for j in 1..<i {
+        pascal[i][j] = pascal[i-1][j-1] + pascal[i-1][j]
     }
-    
-    return distance[n-1][n-1]
 }
 
-while true {
-    let N = Int(readLine()!)!
-    
-    if N == 0 {
-        break
-    }
-    
-    var cave = [[Int]]()
-    
-    for _ in 0..<N {
-        let rupees = readLine()!.split(separator: " ").map { Int($0)! }
-        cave.append(rupees)
-    }
-    
-    let result = dijkstra(cave)
-    print("Problem \(testCase): \(result)")
-    
-    testCase += 1
-}
-
-// 우선순위 큐(Priority Queue) 구현체
-struct PriorityQueue<Element> {
-    private var elements: [Element] = []
-    private let priorityFunction: (Element, Element) -> Bool
-    
-    public init(priorityFunction: @escaping (Element, Element) -> Bool) {
-        self.priorityFunction = priorityFunction
-    }
-    
-    public var isEmpty: Bool {
-        return elements.isEmpty
-    }
-    
-    public var count: Int {
-        return elements.count
-    }
-    
-    public mutating func enqueue(_ element: Element) {
-        elements.append(element)
-        siftUp(from: elements.count - 1)
-    }
-    
-    public mutating func dequeue() -> Element? {
-        guard !isEmpty else {
-            return nil
-        }
-        
-        if elements.count == 1 {
-            return elements.removeLast()
-        } else {
-            let first = elements[0]
-            elements[0] = elements.removeLast()
-            siftDown(from: 0)
-            return first
-        }
-    }
-    
-    private mutating func siftUp(from index: Int) {
-        var childIndex = index
-        var parentIndex = (childIndex - 1) / 2
-        
-        while childIndex > 0 && !priorityFunction(elements[parentIndex], elements[childIndex]) {
-            elements.swapAt(parentIndex, childIndex)
-            childIndex = parentIndex
-            parentIndex = (childIndex - 1) / 2
-        }
-    }
-    
-    private mutating func siftDown(from index: Int) {
-        let count = elements.count
-        var parentIndex = index
-        
-        while true {
-            let leftChildIndex = 2 * parentIndex + 1
-            let rightChildIndex = 2 * parentIndex + 2
-            var candidateIndex = parentIndex
-            
-            if leftChildIndex < count && priorityFunction(elements[leftChildIndex], elements[candidateIndex]) {
-                candidateIndex = leftChildIndex
-            }
-            
-            if rightChildIndex < count && priorityFunction(elements[rightChildIndex], elements[candidateIndex]) {
-                candidateIndex = rightChildIndex
-            }
-            
-            if candidateIndex == parentIndex {
-                return
-            }
-            
-            elements.swapAt(parentIndex, candidateIndex)
-            parentIndex = candidateIndex
-        }
-    }
-}
+print(pascal[n-1][k-1])

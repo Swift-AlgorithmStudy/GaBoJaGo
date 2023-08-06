@@ -1,0 +1,39 @@
+/***
+1. wine을 생성하여 값을 넣고, dp 배열을 0으로 생성한다.
+2. 첫 잔은 무조건 wine[0]이다.
+3. 첫 3잔(n > 1, n > 2)은 마지막(n >=3)과 다르기 때문에 해당하는 조건에 맞춰 계산한다.
+4. 3잔 이상일 때의 경우의 수를 따져보면,
+4-1. i잔을 마신다.
+4-1-1. (i-1)잔을 마신다.
+4-1-2. (i-1)잔을 마시지 않는다.
+4-2. i잔을 마시지 않는다. -> (i-1)까지의 최대값
+5. 4-1-1, 4-1-2, 4-2의 최대값이 i잔까지의 최대값이다.
+6. 인덱스 0부터 시작했기 때문에 n-1번째 값을 출력한다.
+*/
+
+import Foundation
+
+let n = Int(readLine()!)!
+var wine = [Int]()
+var dp = Array(repeating: 0, count: n+1)
+
+for _ in 0..<n {
+    wine.append(Int(readLine()!)!)
+}
+
+dp[0] = wine[0]
+
+if n > 1 {
+    dp[1] = wine[0] + wine[1]
+}
+if n > 2 {
+    dp[2] = max(dp[1], wine[0] + wine[2], wine[1] + wine[2])
+}
+
+if n >= 3 {
+    for i in 3..<n {
+        dp[i] = max(dp[i-1], wine[i] + wine[i-1] + dp[i-3], wine[i] + dp[i-2])
+    }
+}
+
+print(dp[n-1])

@@ -1,0 +1,25 @@
+/***
+1. 값을 입력받고, N+1 길이의 dp 배열을 설정합니다.
+2. 부분 수열의 최소값은 1이기 때문에 1로 설정
+3. 만약 배열의 오른쪽 값이 왼쪽 값보다 크다면(A[j] < A[i]), 
+dp[i]의 값은 dp[j] + 1과 dp[i]의 최대값으로 설정한다.
+4. dp의 최대값을 출력한다.
+*/
+
+import Foundation
+
+let N = Int(readLine()!)!
+
+let A = readLine()!.split(separator: " ").map { Int($0)! }
+
+var dp = Array(repeating: 1, count: N + 1)
+
+for i in 1..<A.count {
+    for j in 0..<i {
+        if A[j] < A[i] {
+            dp[i] = max(dp[i], dp[j] + 1)
+        }
+    }
+}
+
+print(dp.max()!)

@@ -1,0 +1,43 @@
+/***
+1. 0 0이 나온다면 멈춰준다.
+2. 아니라면 우선 dp 배열을 0으로 설정하고, 값들을 입력한다.
+3. 만약 dp 배열 값이 1일 때, (0,0)일 때를 제외하고 
+현재 인덱스 기준 왼쪽, 위쪽, 왼쪽 위 대각선의 최소값에서 +1을 더한 값으로 설정한다.
+4. result값을 최대값으로 갱신한다.
+*/
+
+while true {
+    let inputValues = readLine()!.split(separator: " ").map { Int($0)! }
+    let N = inputValues[0]
+    let M = inputValues[1]
+    
+    if N == 0 && M == 0 {
+        break
+    }
+    
+    var dp = [[Int]](repeating: [Int](repeating: 0, count: M), count: N)
+    
+    for x in 0..<N {
+        let tempValues = readLine()!.split(separator: " ").map { Int($0)! }
+        for y in 0..<M {
+            dp[x][y] = tempValues[y]
+        }
+    }
+        
+    var result = 0
+    
+    for x in 0..<N {
+        for y in 0..<M {
+            if dp[x][y] == 1 {
+                if x > 0 && y > 0 { //(0,0) 경우의 수 제외
+                    dp[x][y] = min(dp[x-1][y], dp[x][y-1], dp[x-1][y-1]) + 1    //왼쪽, 위쪽, 왼쪽 위 대각선 확인
+                }
+                if result < dp[x][y] {
+                    result = dp[x][y]
+                }
+            }
+        }
+    }
+    
+    print(result)
+}

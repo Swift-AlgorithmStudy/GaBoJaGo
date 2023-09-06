@@ -26,6 +26,8 @@ while index < queue.count {
     let currentCity = queue[index]
     let currentCost = distance[currentCity]
     
+    if currentCost > distance[currentCity] { continue }
+    
     for bus in buses[currentCity] { // 갈 수 있는 경로를 확인하면서
         let nextCity = bus.destination
         let nextCost = bus.cost
@@ -36,5 +38,4 @@ while index < queue.count {
     }
     index += 1
 }
-
 print(distance[destinationCity])

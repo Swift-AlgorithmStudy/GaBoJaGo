@@ -21,3 +21,8 @@ for (index, ropeMaxWeight) in ropeMaxWeights.enumerated() {
 }
 
 print(maxWeight)
+
+/*
+ 5  20  35  40  70  110
+ 30 100 140 120 140 110
+ */

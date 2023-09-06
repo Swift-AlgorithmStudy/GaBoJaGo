@@ -38,19 +38,20 @@ final class FileIO {
 
 let fileIO = FileIO()
 let (N, K) = (fileIO.readInt(), fileIO.readInt())
-var jewels = [(mass: Int, value: Int)]()
 var costOfBags = [Int]()
 var maxHeap = Heap<Int>(sort: >)
 
+var jewels = [(mass: Int, value: Int)]()
 for _ in 0..<N {
     jewels.append((fileIO.readInt(), fileIO.readInt()))
 }
+jewels = jewels.sorted { $0.mass < $1.mass }
 
 for _ in 0..<K {
     costOfBags.append(fileIO.readInt())
 }
 
-jewels = jewels.sorted { $0.mass < $1.mass }
+
 costOfBags = costOfBags.sorted()
 
 var stolenValue = 0

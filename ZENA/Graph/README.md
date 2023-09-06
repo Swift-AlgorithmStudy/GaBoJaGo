@@ -129,7 +129,7 @@ extension Vertex: CustomStringConvertible {
 }
 ```
 
-## Defining ad edge
+## Defining an edge
 
 두 정점을 연결하려면, 그들 사이에 엣지가 있어야 한다!
 
